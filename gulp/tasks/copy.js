@@ -20,7 +20,7 @@ gulp.task('copy:rootfiles', function() {
 });
 
 gulp.task('copy', [
-  // 'copy:rootfiles',
+  'copy:rootfiles',
   'copy:vendor',
   'copy:fonts'
 ]);
