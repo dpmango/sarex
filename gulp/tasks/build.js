@@ -25,7 +25,7 @@ function build(callback) {
     'sprite:svg',
     'sprite:png',
     'copy',
-    'list-pages',
+    // 'list-pages',
     callback
   );
 }
