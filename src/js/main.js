@@ -17,12 +17,14 @@ $(document).ready(function(){
     hd: 1680
   }
 
-  var easingSwing = [.02, .01, .47, 1]; // default jQuery easing for anime.js
-
   ////////////
   // READY - triggered when PJAX DONE
   ////////////
   function pageReady(){
+    _window.scrollTop(0);
+    _window.scroll();
+    _window.resize();
+
     legacySupport();
     updateHeaderActiveClass();
     initHeaderScroll();
@@ -31,7 +33,7 @@ $(document).ready(function(){
     initSliders();
     initScrollMonitor();
     initMasks();
-    initLazyLoad();
+    // initLazyLoad();
 
     // development helper
     _window.on('resize', debounce(setBreakpoint, 200))
@@ -146,7 +148,7 @@ $(document).ready(function(){
 
   function initPopups(){
     // Magnific Popup
-    var startWindowScroll = 0;
+    // var startWindowScroll = 0;
     $('[js-popup]').magnificPopup({
       type: 'inline',
       fixedContentPos: true,
@@ -158,14 +160,14 @@ $(document).ready(function(){
       removalDelay: 300,
       mainClass: 'popup-buble',
       callbacks: {
-        beforeOpen: function() {
-          startWindowScroll = _window.scrollTop();
-          // $('html').addClass('mfp-helper');
-        },
-        close: function() {
-          // $('html').removeClass('mfp-helper');
-          _window.scrollTop(startWindowScroll);
-        }
+        // beforeOpen: function() {
+        //   startWindowScroll = _window.scrollTop();
+        //   // $('html').addClass('mfp-helper');
+        // },
+        // close: function() {
+        //   // $('html').removeClass('mfp-helper');
+        //   _window.scrollTop(startWindowScroll);
+        // }
       }
     });
     //

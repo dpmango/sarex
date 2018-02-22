@@ -10,27 +10,87 @@ html.mfp-helper
     height: 100%
     -webkit-transform: translateZ(0)
 
-#small-dialog
+.modal
   background: white
-  padding: 20px 30px
+  padding: 35px 25px
   text-align: left
-  max-width: 600px
+  max-width: 580px
   margin: 40px auto
   position: relative
+  color: #3b4044
+  &__title
+    font-size: 30px
+    text-align: center
+    letter-spacing: 0.025em
+  &__subtitle
+    text-align: center
+    font-size: 15px
+    font-weight: 500
+    margin-top: 20px
+    color: #91979c
+    max-width: 420px
+    margin-left: auto
+    margin-right: auto
+
+  &__form
+    max-width: 310px
+    margin-left: auto
+    margin-right: auto
+    margin-top: 35px
+    .ui-input
+      padding-left: 15px
+      padding-right: 15px
+      margin-bottom: 30px
+      &::after
+        background: #e1e1e1
+        width: 0
+      label:not(.ui-input__validation)
+        display: block
+        font-size: 13px
+        color: #91979c
+      input, textarea
+        color: #3b4044
+        border-bottom: 1px solid #e1e1e1
+        font-size: 18px
+        padding-bottom: 5px
+        &::placeholder
+          color: rgba(#3b4044, .6)
+      &.is-focused
+        &::after
+          width: calc(100% - 30px)
+          background: darken(#e1e1e1, 20%)
+        label:not(.ui-input__validation)
+          color: darken(#91979c, 10%)
+    &-button
+      text-align: center
+      margin-top: 30px
+
+  &__conditions
+    margin-top: 25px
+    font-size: 14px
+    font-weight: 500
+    text-align: center
+    letter-spacing: 0.025em
+    color: #91979c
+    a
+      color: $colorYellow
+      transition: .25s $ease
+      &:hover
+        color: rgba($colorYellow, .75)
 
 
 // Fade-zoom animation for first dialog
 .popup-buble
   .mfp-close
     position: absolute
-    top: 25px
-    right: 25px
+    top: 5px
+    right: 15px
     z-index: 10000
     opacity: 1
     width: auto
     height: auto
-    font-size: 0
     padding: 0
+    font-size: 37px
 
   .popup-dialog, .mfp-content
     opacity: 0

@@ -1,0 +1,21 @@
+#callback.mfp-hide.modal 
+  .modal__title Заказать аэросъёмку
+  .modal__subtitle Оставьте своё имя и телефон, мы свяжемся с вами для уточнения деталей заказа
+  
+  form(action="#" js-validateCallback).modal__form
+    .ui-input
+      input(type="text" name="name" placeholder='Как к вам обращаться')
+      label Как к вам обращаться
+      +icon('ico-user')
+    .ui-input
+      input(type="tel" name="phone")
+      label телефон
+      +icon('ico-phone')
+    .ui-input
+      input(type="text" name="time")
+      label Выберите время, мы вам перезвоним
+    .modal__form-button(data-animation-delay=".5s")
+      button(type="submit").btn.btn-primary
+        span Отправить
+  
+  .modal__conditions Нажимая «Отправить», вы принимаете условия <a href="#">пользовательского соглашения</a> и <a href="#">закона передаче персональных данных</a>
