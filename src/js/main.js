@@ -93,7 +93,7 @@ $(document).ready(function(){
       var vScroll = _window.scrollTop();
       var header = $('.header').not('.header--static');
       var headerHeight = header.height();
-      var firstSection = _document.find('.page__content div:first-child()').height() - headerHeight;
+      var firstSection = _document.find('.hero').height() - headerHeight;
       var visibleWhen = Math.round(_document.height() / _window.height()) >  2.5
 
       if (visibleWhen){
@@ -102,7 +102,7 @@ $(document).ready(function(){
         } else {
           header.removeClass('is-fixed');
         }
-        if ( vScroll > firstSection ){
+        if ( vScroll > firstSection + headerHeight + 50 ){
           header.addClass('is-fixed-visible');
         } else {
           header.removeClass('is-fixed-visible');
@@ -140,38 +140,17 @@ $(document).ready(function(){
   //////////
 
   function initSliders(){
-    var slickNextArrow = '<div class="slick-prev"><svg class="ico ico-back-arrow"><use xlink:href="img/sprite.svg#ico-back-arrow"></use></svg></div>';
-    var slickPrevArrow = '<div class="slick-next"><svg class="ico ico-next-arrow"><use xlink:href="img/sprite.svg#ico-next-arrow"></use></svg></div>'
-
-    // General purpose sliders
-    $('[js-slider]').each(function(i, slider){
-      var self = $(slider);
-
-      // set data attributes on slick instance to control
-      if (self && self !== undefined) {
-        self.slick({
-          autoplay: self.data('slick-autoplay') !== undefined ? true : false,
-          dots: self.data('slick-dots') !== undefined ? true : false,
-          arrows: self.data('slick-arrows') !== undefined ? true : false,
-          prevArrow: slickNextArrow,
-          nextArrow: slickPrevArrow,
-          infinite: self.data('slick-infinite') !== undefined ? true : true,
-          speed: 300,
-          slidesToShow: 1,
-          accessibility: false,
-          adaptiveHeight: true,
-          draggable: self.data('slick-no-controls') !== undefined ? false : true,
-          swipe: self.data('slick-no-controls') !== undefined ? false : true,
-          swipeToSlide: self.data('slick-no-controls') !== undefined ? false : true,
-          touchMove: self.data('slick-no-controls') !== undefined ? false : true
-        });
-      }
-
-    })
-
-    // other individual sliders goes here
-    $('[js-myCustomSlider]').slick({
-
+    $('[js-testimonialsSlider]').slick({
+      autoplay: true,
+      autoplaySpeed: 5000,
+      dots: true,
+      arrows: false,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      // vertical: true,
+      accessibility: false,
+      adaptiveHeight: true
     })
 
   }
@@ -219,6 +198,39 @@ $(document).ready(function(){
   			tError: '<a href="%url%">The image #%curr%</a> could not be loaded.'
   		}
   	});
+
+    $('[js-popupVideo]').magnificPopup({
+      // disableOn: 700,
+      type: 'iframe',
+      fixedContentPos: true,
+      fixedBgPos: true,
+      overflowY: 'auto',
+      closeBtnInside: true,
+      preloader: false,
+      midClick: true,
+      removalDelay: 300,
+      mainClass: 'popup-buble',
+      callbacks: {
+        beforeOpen: function() {
+          // startWindowScroll = _window.scrollTop();
+          // $('html').addClass('mfp-helper');
+        }
+      },
+      patterns: {
+        youtube: {
+          index: 'youtube.com/',
+          id: 'v=', // String that splits URL in a two parts, second part should be %id%
+          // Or null - full URL will be returned
+          // Or a function that should return %id%, for example:
+          // id: function(url) { return 'parsed id'; }
+
+          src: '//www.youtube.com/embed/%id%?autoplay=1&controls=0&showinfo=0' // URL that will be set as a source for iframe.
+        }
+      },
+      // closeMarkup: '<button class="mfp-close"><div class="video-box__close-button btn"><div class="item"></div><div class="item"></div><div class="item"></div><div class="item"></div><img src="img/setting/video_close.svg" alt=""/></div></button>'
+    });
+
+
   }
 
   function closeMfp(){
@@ -244,9 +256,25 @@ $(document).ready(function(){
         this.rows = minRows + rows;
     });
 
+  // focus in
+  _document.on('focus', '.ui-input', function(){
+    $(this).addClass('is-focused');
+  })
+
+  // focus out
+  _document.on('blur', '.ui-input', function(){
+    var thisVal = $(this).find('input, textarea').val();
+    if ( thisVal !== "" ){
+      $(this).addClass('is-focused');
+    } else {
+      $(this).removeClass('is-focused');
+    }
+  })
+
+
   // Masked input
   function initMasks(){
-    $("[js-dateMask]").mask("99.99.99",{placeholder:"ДД.ММ.ГГ"});
+    $("input[name='time']").mask("00:00",{placeholder:"12:00"});
     $("input[type='tel']").mask("+7 (000) 000-0000", {placeholder: "+7 (___) ___-____"});
   }
 
@@ -316,87 +344,6 @@ $(document).ready(function(){
   }
 
   //////////
-  // BARBA PJAX
-  //////////
-
-  Barba.Pjax.Dom.containerClass = "page";
-
-  var FadeTransition = Barba.BaseTransition.extend({
-    start: function() {
-      Promise
-        .all([this.newContainerLoading, this.fadeOut()])
-        .then(this.fadeIn.bind(this));
-    },
-
-    fadeOut: function() {
-      var deferred = Barba.Utils.deferred();
-
-      anime({
-        targets: this.oldContainer,
-        opacity : .5,
-        easing: easingSwing, // swing
-        duration: 300,
-        complete: function(anim){
-          deferred.resolve();
-        }
-      })
-
-      return deferred.promise
-    },
-
-    fadeIn: function() {
-      var _this = this;
-      var $el = $(this.newContainer);
-
-      $(this.oldContainer).hide();
-
-      $el.css({
-        visibility : 'visible',
-        opacity : .5
-      });
-
-      anime({
-        targets: "html, body",
-        scrollTop: 0,
-        easing: easingSwing, // swing
-        duration: 150
-      });
-
-      anime({
-        targets: this.newContainer,
-        opacity: 1,
-        easing: easingSwing, // swing
-        duration: 300,
-        complete: function(anim) {
-          triggerBody()
-          _this.done();
-        }
-      });
-    }
-  });
-
-  // set barba transition
-  Barba.Pjax.getTransition = function() {
-    return FadeTransition;
-  };
-
-  Barba.Prefetch.init();
-  Barba.Pjax.start();
-
-  Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container, newPageRawHTML) {
-
-    pageReady();
-    closeMobileMenu();
-
-  });
-
-  // some plugins get bindings onNewPage only that way
-  function triggerBody(){
-    $(window).scroll();
-    $(window).resize();
-  }
-
-  //////////
   // DEVELOPMENT HELPER
   //////////
   function setBreakpoint(){
@@ -405,8 +352,9 @@ $(document).ready(function(){
     if (displayCondition){
       console.log(displayCondition)
       var wWidth = _window.width();
+      var wHeight = _window.height();
 
-      var content = "<div class='dev-bp-debug'>"+wWidth+"</div>";
+      var content = "<div class='dev-bp-debug'>"+wWidth+"/" +wHeight+ "</div>";
 
       $('.page').append(content);
       setTimeout(function(){
@@ -419,3 +367,88 @@ $(document).ready(function(){
   }
 
 });
+
+
+//////////////
+// CONTACT SECTION
+/////////////
+
+// When the window has finished loading create our google map below
+if ( $('#contact-map').length > 0 ){
+  google.maps.event.addDomListener(window, 'load', init);
+}
+
+
+function init() {
+    // Basic options for a simple Google Map
+    // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
+    var mapOptions = {
+        // How zoomed in you want the map to start at (always required)
+        zoom: 10,
+
+        // The latitude and longitude to center the map (always required)
+        center: new google.maps.LatLng(55.655826, 37.617300),
+
+        // How you would like to style the map.
+        // This is where you would paste any style found on Snazzy Maps.
+        styles: [{"featureType":"water","elementType":"geometry","stylers":[{"color":"#e9e9e9"},{"lightness":17}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#f5f5f5"},{"lightness":20}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ffffff"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#ffffff"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":18}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":16}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#f5f5f5"},{"lightness":21}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#dedede"},{"lightness":21}]},{"elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#ffffff"},{"lightness":16}]},{"elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#333333"},{"lightness":40}]},{"elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#f2f2f2"},{"lightness":19}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#fefefe"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#fefefe"},{"lightness":17},{"weight":1.2}]}]
+    };
+
+    var icon = 'img/mapsMarker.png';
+
+    // Get the HTML DOM element that will contain your map
+    // We are using a div with id="map" seen below in the <body>
+    var mapElement = document.getElementById('contact-map');
+
+    // Create the Google Map using our element and options defined above
+    var map = new google.maps.Map(mapElement, mapOptions);
+
+    var contentString = '<div class="g-marker">'+
+        '<p><b>Офис и производство</b>Синельниковская ул., 12</p>'+
+        '</div>';
+
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+    var marker = new google.maps.Marker({
+        position: new google.maps.LatLng(55.546167, 37.575505),
+        icon: icon,
+        map: map,
+        title: 'Офис и производство'
+    });
+
+    // marker.addListener('click', function() {
+    //   infowindow.open(map, marker);
+    // });
+
+    // google.maps.event.addListener(map, 'click', function() {
+    //   infowindow.close();
+    // });
+
+    // INFOWINDOW CUSTOMIZE.
+    // google.maps.event.addListener(infowindow, 'domready', function() {
+    //
+    //   var iwOuter = $('.gm-style-iw');
+    //   var iwBackground = iwOuter.prev();
+    //   iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+    //   iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+    //
+    //   // set dialog pos
+    //   iwOuter.parent().parent().css({left: '-70px', top: '38px'});
+    //
+    //   // remove arrow
+    //   iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'left: 10000px !important;'});
+    //   iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'left: 10000px !important;'});
+    //
+    //   iwBackground.children(':nth-child(3)').find('div').children().css({'box-shadow': 'none', 'z-index' : '-100'});
+    //   iwBackground.children(':nth-child(3)').find('div').children().css({'display': 'none'});
+    //
+    //   //remove close btn
+    //   var iwCloseBtn = iwOuter.next();
+    //   iwCloseBtn.css({display: 'none'});
+    //   $('.iw-bottom-gradient').css({display: 'none'});
+    //
+    // });
+
+};

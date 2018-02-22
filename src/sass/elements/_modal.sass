@@ -20,20 +20,32 @@ html.mfp-helper
 
 
 // Fade-zoom animation for first dialog
-
 .popup-buble
-  .popup-dialog
+  .mfp-close
+    position: absolute
+    top: 25px
+    right: 25px
+    z-index: 10000
+    opacity: 1
+    width: auto
+    height: auto
+    font-size: 0
+    padding: 0
+
+  .popup-dialog, .mfp-content
     opacity: 0
     transition: all 0.2s ease-in-out
-    transform: scale(0.8)
-  &.mfp-ready .popup-dialog
-    opacity: 1
-    transform: scale(1)
-  &.mfp-removing .popup-dialog
-    transform: scale(0.8)
-    opacity: 0
+    transform: scale(0.8) translate3d(0,50%,0)
+  &.mfp-ready
+    .popup-dialog, .mfp-content
+      opacity: 1
+      transform: scale(1)
+  &.mfp-removing
+    .popup-dialog, .mfp-content
+      transform: scale(0.8) translate3d(0,-50%,0)
+      opacity: 0
   &.mfp-bg
-    background: $colorGreen
+    background: rgba(#231F20, .85)
     opacity: 0
     transition: opacity 0.3s $ease
   &.mfp-ready.mfp-bg
@@ -41,24 +53,21 @@ html.mfp-helper
   &.mfp-removing.mfp-bg
     opacity: 0
 
+.mfp-iframe-holder
+  max-width: 1680px
+  padding-left: 50px
+  padding-right: 50px
+  .mfp-content
+    max-width: 100%
+    width: 100vw
+    height: 56.25vw
+    max-height: 100vh
+    max-width: 177.78vh
+    margin: auto
+    position: absolute 0
 
-
-// Fade-move animation
-.my-mfp-slide-bottom
-  .zoom-anim-dialog
-    opacity: 0
-    transition: all 0.2s ease-out
-    transform: translateY(-20px) perspective(600px) rotateX(10deg)
-  &.mfp-ready .zoom-anim-dialog
-    opacity: 1
-    transform: translateY(0) perspective(600px) rotateX(0)
-  &.mfp-removing .zoom-anim-dialog
-    opacity: 0
-    transform: translateY(-10px) perspective(600px) rotateX(10deg)
-  &.mfp-bg
-    opacity: 0
-    transition: opacity 0.3s ease-out
-  &.mfp-ready.mfp-bg
-    opacity: 0.8
-  &.mfp-removing.mfp-bg
-    opacity: 0
++r($mobile)
+  .popup-buble
+    .mfp-close
+      right: 10px
+      top: 10px

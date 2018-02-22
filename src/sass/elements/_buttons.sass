@@ -4,6 +4,7 @@ button
   border: 0
   box-shadow: none
   cursor: pointer
+  background: transparent
   &:focus
     outline: none
 
@@ -18,17 +19,62 @@ button
     display: block
     width: 100%
 
-  &-example
-    // please use paddings instead of line-height to control btn height
-    background: $colorOrange
-    font-size: 20px
-    padding: 15px 30px
-    color: white
-    transition: .25s $ease
-    transform-origin: center bottom
-    box-shadow: none
-    will-change: box-shadow, transform
+  &-primary
+    position: relative
+    font-size: 13px
+    padding: 17px 45px
+    color: $colorYellow
+    font-weight: 500
+    &::after
+      display: inline-block
+      content: ' '
+      position: absolute
+      top: 50%
+      left: 50%
+      transform: translate(-50%,-50%)
+      +sprite('btn-border')
     &:hover
-      transform: scale(1.05) translateY(-5px)
-      background: rgba($colorOrange, .9)
-      box-shadow: 0 15px 10px -15px rgba($fontColor, .4)
+      color: white
+      background: $colorYellow
+
+  &-corner
+    position: absolute
+    &::before, &::after
+      display: inline-block
+      content: ' '
+      width: 6px
+      height: 1px
+      background: currentColor
+    &::after
+      transform: rotate(90deg)
+      transform-origin: left top
+    &:nth-child(1)
+      top: 0
+      left: 0
+      transform-origin: left bottom
+      transform: rotate(-90deg)
+    &:nth-child(2)
+      top: 0
+      right: 0
+    &:nth-child(3)
+      bottom: 0
+      left: 0
+      transform-origin: left bottom
+      transform: rotate(-180deg)
+    &:nth-child(4)
+      bottom: 0
+      right: 0
+      transform-origin: left bottom
+      transform: rotate(90deg)
+
+  &-hero
+    position: relative
+    font-size: 16px
+    font-family: $exo
+    padding: 15px 45px
+    color: white
+    font-weight: 500
+    border: 1px solid rgba(white, .22)
+    .btn-corner
+      &::before, &::after
+        background: $colorYellow

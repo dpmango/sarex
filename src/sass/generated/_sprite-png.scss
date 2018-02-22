@@ -1,11 +1,128 @@
 $sprite: (
-	logo: (
+	btn-border: (
 		offset-x: 0px,
 		offset-y: 0px,
-		width: 300px,
-		height: 70px,
-		total-width: 300px,
-		total-height: 70px,
+		width: 135px,
+		height: 47px,
+		total-width: 307px,
+		total-height: 280px,
+		image: '../img/sprite.png'
+	),
+	logo1-grad: (
+		offset-x: 0px,
+		offset-y: -134px,
+		width: 77px,
+		height: 46px,
+		total-width: 307px,
+		total-height: 280px,
+		image: '../img/sprite.png'
+	),
+	logo1: (
+		offset-x: -87px,
+		offset-y: -134px,
+		width: 77px,
+		height: 46px,
+		total-width: 307px,
+		total-height: 280px,
+		image: '../img/sprite.png'
+	),
+	logo2-grad: (
+		offset-x: 0px,
+		offset-y: -227px,
+		width: 47px,
+		height: 53px,
+		total-width: 307px,
+		total-height: 280px,
+		image: '../img/sprite.png'
+	),
+	logo2: (
+		offset-x: -76px,
+		offset-y: -57px,
+		width: 47px,
+		height: 53px,
+		total-width: 307px,
+		total-height: 280px,
+		image: '../img/sprite.png'
+	),
+	logo3-grad: (
+		offset-x: 0px,
+		offset-y: -190px,
+		width: 97px,
+		height: 27px,
+		total-width: 307px,
+		total-height: 280px,
+		image: '../img/sprite.png'
+	),
+	logo3: (
+		offset-x: -107px,
+		offset-y: -190px,
+		width: 97px,
+		height: 27px,
+		total-width: 307px,
+		total-height: 280px,
+		image: '../img/sprite.png'
+	),
+	logo4-grad: (
+		offset-x: -145px,
+		offset-y: -71px,
+		width: 51px,
+		height: 51px,
+		total-width: 307px,
+		total-height: 280px,
+		image: '../img/sprite.png'
+	),
+	logo4: (
+		offset-x: -216px,
+		offset-y: -96px,
+		width: 51px,
+		height: 51px,
+		total-width: 307px,
+		total-height: 280px,
+		image: '../img/sprite.png'
+	),
+	logo5-grad: (
+		offset-x: -216px,
+		offset-y: 0px,
+		width: 91px,
+		height: 38px,
+		total-width: 307px,
+		total-height: 280px,
+		image: '../img/sprite.png'
+	),
+	logo5: (
+		offset-x: -216px,
+		offset-y: -48px,
+		width: 91px,
+		height: 38px,
+		total-width: 307px,
+		total-height: 280px,
+		image: '../img/sprite.png'
+	),
+	play: (
+		offset-x: 0px,
+		offset-y: -57px,
+		width: 66px,
+		height: 67px,
+		total-width: 307px,
+		total-height: 280px,
+		image: '../img/sprite.png'
+	),
+	quote: (
+		offset-x: -57px,
+		offset-y: -227px,
+		width: 33px,
+		height: 33px,
+		total-width: 307px,
+		total-height: 280px,
+		image: '../img/sprite.png'
+	),
+	video-play: (
+		offset-x: -145px,
+		offset-y: 0px,
+		width: 61px,
+		height: 61px,
+		total-width: 307px,
+		total-height: 280px,
 		image: '../img/sprite.png'
 	),
 );
@@ -64,6 +181,45 @@ $sprite: (
 
 
 
-	.icon-logo {
-		@include sprite(logo)
+	.icon-btn-border {
+		@include sprite(btn-border)
+	}
+	.icon-logo1-grad {
+		@include sprite(logo1-grad)
+	}
+	.icon-logo1 {
+		@include sprite(logo1)
+	}
+	.icon-logo2-grad {
+		@include sprite(logo2-grad)
+	}
+	.icon-logo2 {
+		@include sprite(logo2)
+	}
+	.icon-logo3-grad {
+		@include sprite(logo3-grad)
+	}
+	.icon-logo3 {
+		@include sprite(logo3)
+	}
+	.icon-logo4-grad {
+		@include sprite(logo4-grad)
+	}
+	.icon-logo4 {
+		@include sprite(logo4)
+	}
+	.icon-logo5-grad {
+		@include sprite(logo5-grad)
+	}
+	.icon-logo5 {
+		@include sprite(logo5)
+	}
+	.icon-play {
+		@include sprite(play)
+	}
+	.icon-quote {
+		@include sprite(quote)
+	}
+	.icon-video-play {
+		@include sprite(video-play)
 	}
