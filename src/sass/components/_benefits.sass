@@ -1,0 +1,51 @@
+
+// BENEFITS
+.benefits
+  display: flex
+  flex-direction: column
+  background: url('../img/benefitsBg.jpg') no-repeat center
+  background-size: cover
+  min-height: 100vh
+  > .container
+    flex: 1 0 auto
+    display: flex
+    flex-direction: column
+  &__wrapper
+    width: 100%
+    flex: 1 0 auto
+    margin: 0 auto
+    display: flex
+    align-items: center
+    justify-content: space-between
+    margin: 0 -15px
+
++rhmin(800)
+  .benefits
+    min-height: 1px
+    height: 100vh
+    max-height: 800px
+
+.benefits-card
+  flex: 0 1 33.33%
+  max-width: 330px
+  padding: 15px
+  min-height: 1px
+  min-width: 0
+  &__head
+    display: flex
+    align-items: center
+    .ico
+      color: $colorYellow
+      font-size: 35px
+    span
+      display: inline-block
+      margin-left: 10px
+      font-size: 24px
+      letter-spacing: 0.025em
+      color: white
+  &__text
+    font-size: 14px
+    font-weight: 500
+    margin-top: 15px
+    line-height: 1.78
+    color: rgba(white, .67)

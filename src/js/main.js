@@ -35,25 +35,10 @@ $(document).ready(function(){
 
     // development helper
     _window.on('resize', debounce(setBreakpoint, 200))
-
-    // AVAILABLE in _components folder
-    // copy paste in main.js and initialize here
-
-    // initTeleport();
-    // parseSvg();
-    // revealFooter();
-    // _window.on('resize', throttle(revealFooter, 100));
   }
 
   // this is a master function which should have all functionality
   pageReady();
-
-
-  // some plugins work best with onload triggers
-  _window.on('load', function(){
-    // your functions
-  })
-
 
   //////////
   // COMMON
@@ -65,7 +50,7 @@ $(document).ready(function(){
 
     // Viewport units buggyfill
     window.viewportUnitsBuggyfill.init({
-      force: true,
+      force: false,
       refreshDebounceWait: 150,
       appendToBody: true
     });
@@ -183,21 +168,21 @@ $(document).ready(function(){
         }
       }
     });
-
-    $('[js-popup-gallery]').magnificPopup({
-  		delegate: 'a',
-  		type: 'image',
-  		tLoading: 'Загрузка #%curr%...',
-  		mainClass: 'popup-buble',
-  		gallery: {
-  			enabled: true,
-  			navigateByImgClick: true,
-  			preload: [0,1]
-  		},
-  		image: {
-  			tError: '<a href="%url%">The image #%curr%</a> could not be loaded.'
-  		}
-  	});
+    //
+    // $('[js-popup-gallery]').magnificPopup({
+  	// 	delegate: 'a',
+  	// 	type: 'image',
+  	// 	tLoading: 'Загрузка #%curr%...',
+  	// 	mainClass: 'popup-buble',
+  	// 	gallery: {
+  	// 		enabled: true,
+  	// 		navigateByImgClick: true,
+  	// 		preload: [0,1]
+  	// 	},
+  	// 	image: {
+  	// 		tError: '<a href="%url%">The image #%curr%</a> could not be loaded.'
+  	// 	}
+  	// });
 
     $('[js-popupVideo]').magnificPopup({
       // disableOn: 700,
@@ -240,21 +225,6 @@ $(document).ready(function(){
   ////////////
   // UI
   ////////////
-
-  // textarea autoExpand
-  _document
-    .one('focus.autoExpand', '.ui-group textarea', function(){
-        var savedValue = this.value;
-        this.value = '';
-        this.baseScrollHeight = this.scrollHeight;
-        this.value = savedValue;
-    })
-    .on('input.autoExpand', '.ui-group textarea', function(){
-        var minRows = this.getAttribute('data-min-rows')|0, rows;
-        this.rows = minRows;
-        rows = Math.ceil((this.scrollHeight - this.baseScrollHeight) / 17);
-        this.rows = minRows + rows;
-    });
 
   // focus in
   _document.on('focus', '.ui-input', function(){
@@ -318,29 +288,6 @@ $(document).ready(function(){
       }, 100));
     });
 
-  }
-
-
-  //////////
-  // LAZY LOAD
-  //////////
-  function initLazyLoad(){
-    _document.find('[js-lazy]').Lazy({
-      threshold: 500,
-      enableThrottle: true,
-      throttle: 100,
-      scrollDirection: 'vertical',
-      effect: 'fadeIn',
-      effectTime: 350,
-      // visibleOnly: true,
-      // placeholder: "data:image/gif;base64,R0lGODlhEALAPQAPzl5uLr9Nrl8e7...",
-      onError: function(element) {
-          console.log('error loading ' + element.data('src'));
-      },
-      beforeLoad: function(element){
-        // element.attr('style', '')
-      }
-    });
   }
 
   //////////

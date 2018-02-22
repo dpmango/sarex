@@ -1,0 +1,78 @@
+.hero
+  // next sections will overflow this contents
+  position: fixed 0
+  z-index: 5
+  overflow: hidden
+  background: url('../img/heroBg.jpg') no-repeat center
+  background-size: cover
+  min-height: 600px
+  height: 100vh
+  display: flex
+  flex-direction: column
+  &::after
+    display: inline-block
+    content: ' '
+    position: absolute 0
+    z-index: 1
+    background: #444c52
+    opacity: .6
+  > .container
+    position: relative
+    z-index: 3
+    flex: 1 0 auto
+    display: flex
+    flex-direction: column
+  &__wrapper
+    flex: 0 0 auto
+    display: flex
+    flex-direction: column
+    align-items: center
+    max-width: 720px
+    margin-left: auto
+    margin-right: auto
+    text-align: center
+    margin-top: auto
+    color: white
+    padding: 100px 0 50px 0
+  &__play
+    margin-bottom: 20px
+    cursor: pointer
+  &__title
+    font-size: 42px
+    line-height: 1.42
+    font-weight: 400
+    letter-spacing: 0.2em
+    text-transform: uppercase
+    margin: 0
+  &__subtitle
+    font-family: $exo
+    font-weight: 400
+    font-size: 16px
+    line-height: 1.5
+    letter-spacing: 0.05em
+  &__cta
+    max-width: 290px
+    margin-left: auto
+    margin-right: auto
+    margin-top: 20px
+  &__join
+    margin-top: 50px
+    font-size: 16px
+    letter-spacing: 0.05em
+    font-family: $exo
+    a
+      transition: .25s $ease
+      color: $colorYellow
+      &:hover
+        color: white
+  &__scroll
+    margin-top: 60px
+    display: flex
+    align-items: center
+    cursor: pointer
+    span
+      font-family: $exo
+      font-size: 14px
+      letter-spacing: 0.05em
+      display: inline-block
+      margin-left: 20px

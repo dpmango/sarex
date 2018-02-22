@@ -1,0 +1,104 @@
+
+// BENEFITS
+.types
+  display: flex
+  flex-direction: column
+  background: white
+  min-height: 100vh
+  > .container
+    flex: 1 0 auto
+    display: flex
+    flex-direction: column
+  &__wrapper
+    display: flex
+    flex-wrap: wrap
+    padding-top: 100px
+
++rhmin(800)
+  .types
+    min-height: 1px
+    height: 100vh
+    max-height: 800px
+
+.types-card
+  position: relative
+  flex: 0 0 33.3%
+  overflow: hidden
+  font-size: 0
+  min-height: 180px
+  &:hover
+    &::after
+      background: rgba(#282d30, .6)
+    .types-card__bg
+      transform: translate(-50%,-50%) scale(1.1)
+  &::after
+    display: block
+    content: ' '
+    position: absolute 0
+    z-index: 2
+    background: rgba(#282d30, .8)
+    transition: .25s $ease
+  &__bg
+    position: absolute
+    min-width: 100%
+    min-height: 100%
+    width: auto
+    height: auto
+    top: 50%
+    left: 50%
+    transform: translate(-50%,-50%)
+    z-index: 1
+    transition: .6s $ease
+
+  &__name
+    position: absolute
+    z-index: 3
+    top: 50%
+    left: 50%
+    text-align: center
+    transform: translate(-50%,-50%)
+    font-weight: 500
+    font-size: 14px
+    color: white
+    letter-spacing: 0.05em
+
+
+.numbers
+  display: flex
+  justify-content: space-between
+  max-width: 1080px
+  width: 100%
+  padding: 25px 0
+  margin-left: auto
+  margin-right: auto
+  &-card
+    padding: 15px
+    flex: 0 1 320px
+    &__top
+      position: relative
+      border-bottom: 1px solid #e1e1e1
+      .ico
+        position: absolute
+        top: 0
+        right: 0
+        color: $colorYellow
+        font-size: 20px
+      &::after
+        display: inline-block
+        content: ' '
+        position: absolute
+        bottom: -6px
+        left: 0
+        width: 75%
+        height: 3px
+        background: $colorYellow
+    &__number
+      color: #3b4044
+      font-size: 24px
+      letter-spacing: 0.025em
+    &__sub
+      margin-top: 10px
+      font-size: 13px
+      font-weight: 500
+      color: #91979c
+      letter-spacing: 0.025em

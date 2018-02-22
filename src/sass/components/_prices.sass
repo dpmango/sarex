@@ -1,0 +1,131 @@
+// PRICES
+.prices
+  display: flex
+  flex-direction: column
+  background: url('../img/pricesBg.jpg') no-repeat center
+  background-size: cover
+  min-height: 100vh
+  padding: 50px 0 75px 0
+  color: white
+  &__wrapper
+    padding: 25px 0 75px 0
+    color: white
+    max-width: 860px
+    margin-left: auto
+    margin-right: auto
+  &__title
+    font-size: 36px
+    text-align: center
+  &__wrapper
+    max-width: 1180px
+    display: flex
+    align-items: stretch
+    margin-left: auto
+    margin-right: auto
+
++rhmin(750)
+  .prices
+    min-height: 1px
+    height: 100vh
+    max-height: 750px
+
+.prices-card
+  flex: 0 1 25%
+  display: flex
+  flex-direction: column
+  padding: 15px
+  color: #2f353a
+  &__inner
+    flex: 1 0 auto
+    background: white
+    display: flex
+    flex-direction: column
+    padding: 0px 7% 25px 7%
+  &__head
+    position: relative
+    border-bottom: 1px solid rgba(#a4aaaf, .25)
+    padding: 25px 0 23px 0
+  &__num
+    position: absolute
+    top: 50%
+    left: 0
+    transform: translateY(-50%)
+    color: #dddddd
+    font-size: 16px
+    padding-top: 3px
+  &__name
+    font-weight: 500
+    font-size: 24px
+    color: #4f5356
+    letter-spacing: 0.025em
+    text-align: center
+  &__tag
+    position: absolute
+    bottom: -10px
+    left: -25px
+    font-weight: 500
+    font-size: 14px
+    background: $colorYellow
+    color: white
+    padding: 5px 25px
+  &__price
+    border-bottom: 1px solid rgba(#a4aaaf, .25)
+    padding: 30px 0
+    text-align: center
+    &-num
+      font-size: 36px
+      font-weight: 500
+      letter-spacing: 0.025em
+      color: $colorYellow
+    span
+      display: inline-block
+      margin-top: 15px
+      font-size: 14px
+      font-weight: 500
+      text-transform: uppercase
+      letter-spacing: 0.025em
+      color: #858994
+    &--invert
+      span
+        margin-top: 7px
+        margin-bottom: 15px
+      .prices-card__price-num
+        font-size: 30px
+  &__list
+    padding: 10px 20px
+    margin: 0 auto
+    li
+      position: relative
+      font-size: 14px
+      font-weight: 500
+      display: inline-block
+      margin: .8em 0
+      padding-left: 10px
+      display: block
+      &::before
+        display: inline-block
+        content: ' '
+        position: absolute
+        top: 5px
+        left: -5px
+        border-radius: 50%
+        size: 6px
+        background: $colorYellow
+      ul
+        padding-left: 5px
+      li
+        color: #91979c
+  &__description
+    padding: 10px 0
+    margin: 0 auto
+    font-size: 14px
+    font-weight: 500
+    text-align: center
+    p
+      line-height: 1.5
+  &__cta
+    margin-top: auto
+    padding-top: 25px
+    .btn
+      padding-top: 20px
+      padding-bottom: 20px
