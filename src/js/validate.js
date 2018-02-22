@@ -59,39 +59,29 @@ $(document).ready(function(){
   /////////////////////
   // REGISTRATION FORM
   ////////////////////
-  $(".js-registration-form").validate({
+  $("[js-validateCta]").validate({
     errorPlacement: validateErrorPlacement,
     highlight: validateHighlight,
     unhighlight: validateUnhighlight,
     submitHandler: validateSubmitHandler,
     rules: {
-      last_name: "required",
-      first_name: "required",
-      email: {
-        required: true,
-        email: true
-      },
-      password: {
-        required: true,
-        minlength: 6,
-      }
-      // phone: validatePhone
+      name: "required",
+      // email: {
+      //   required: true,
+      //   email: true
+      // },
+      phone: validatePhone
     },
     messages: {
-      last_name: "Заполните это поле",
-      first_name: "Заполните это поле",
-      email: {
-          required: "Заполните это поле",
-          email: "Email содержит неправильный формат"
-      },
-      password: {
-          required: "Заполните это поле",
-          email: "Пароль мимимум 6 символов"
-      },
-      // phone: {
+      name: "Заполните это поле",
+      // email: {
       //     required: "Заполните это поле",
-      //     minlength: "Введите корректный телефон"
-      // }
+      //     email: "Email содержит неправильный формат"
+      // },
+      phone: {
+          required: "Заполните это поле",
+          minlength: "Введите корректный телефон"
+      }
     }
   });
 

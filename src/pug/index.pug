@@ -1,0 +1,104 @@
+---
+title: Homepage title
+bodyClass: homepage
+---
+extends shared/_layout
+block content
+  
+  // HERO
+  .hero
+    .container
+      .hero__wrapper
+        .hero__play(js-popupVideo href="https://www.youtube.com/watch?v=S_dfq9rFWAE")
+          i.icon.icon-play
+            
+        h1.hero__title Поддержка с воздуха для Вашего бизнеса
+        h2.hero__subtitle Аэросъемка в более чем 50 городах России <br> и СНГ от профессиональных пилотов
+        .hero__cta
+          a(href="#").btn.btn-hero
+            span.btn-corner
+            span.btn-corner
+            span.btn-corner
+            span.btn-corner
+            span Заказать аэросъемку
+        .hero__join Есть коптер? <a href="#">Присоединяйся к нам</a>
+        .hero__scroll
+          include ../inline-svg/scroll.svg
+          span Скролл вниз 
+  
+  .page__scroller
+    include components/_logos
+    include components/_content-sections
+    
+    // BENEFITS
+    .benefits
+      .container.container--narrow
+        .benefits__wrapper
+          // card 
+          .benefits-card.wow
+            .benefits-card__head
+              +icon('ico-benefit-1')
+              span Удобно
+            .benefits-card__text Оставьте заявку на звонок, а остальное мы сделаем сами - не тратьте время на поиск подходящего оператора и согласование ТЗ   
+          // card 
+          .benefits-card.wow(data-animation-delay=".15s")
+            .benefits-card__head
+              +icon('ico-benefit-2')
+              span Быстро
+            .benefits-card__text Выполнение съемки возможно уже на следующий день после заявки благодаря базе из 650 исполнителей 
+          // card 
+          .benefits-card.wow(data-animation-delay=".3s")
+            .benefits-card__head
+              +icon('ico-benefit-3')
+              span Надежно
+            .benefits-card__text Мы работаем только с профессиональным операторами и контролируем процесс съемок каждого объекта 
+    
+    include components/_types
+    
+    // MAP
+    .map
+      #contact-map.wow
+  
+    include components/_logos  
+                          
+    include components/_testimonials
+                      
+    // CTA
+    .cta
+      .container
+        .cta__wrapper
+          .cta__title Готовы заказать съемку?
+          form(action="#" js-validateCta).cta-form
+            .cta-form__inputs
+              .ui-input
+                input(type="text" name="name" placeholder='Как к вам обращаться')
+                label Как к вам обращаться
+                +icon('ico-user')
+              .ui-input
+                input(type="tel" name="phone")
+                label телефон
+                +icon('ico-phone')
+              .ui-input
+                input(type="text" name="time")
+                label Выберите время, мы вам перезвоним
+            .cta-form__button
+              button(type="submit").btn.btn-primary
+                span Отправить
+          
+          ul.cta__menu
+            li
+              a(href="#") О нас
+            li
+              a(href="#") Публикации
+            li
+              a(href="#") Как это работает
+            li
+              a(href="#") Преимущества
+            li
+              a(href="#") Типы съемки
+            li
+              a(href="#") Гарантии
+                    
+
+      
+    include components/_footer

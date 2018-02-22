@@ -1,7 +1,79 @@
 // FOOTER
 .footer
-  background: #f5f5f5
+  background: #181d20
   &__wrapper
     display: flex
     align-items: center
     height: 100px
+  &__copy
+    font-size: 11px
+    font-family: $exo
+    font-weight: 300
+    color: rgba(#919191, .43)
+    transition: .25s $ease
+    &:hover
+      color: #919191
+  &__contacts
+    margin-left: 30px
+    &-phone
+      display: inline-block
+      font-size: 12px
+      color: white
+      transition: .25s $ease
+      &:hover
+        color: $colorYellow
+    &-email
+      display: inline-block
+      margin-left: 30px
+      font-size: 12px
+      color: $colorYellow
+      transition: .25s $ease
+      &:hover
+        color: white
+
+
+  &__links
+    margin-left: auto
+    a
+      display: inline-block
+      margin-right: 25px
+      transition: .25s $ease
+      color: $colorYellow
+      font-size: 12px
+      font-weight: 500
+      &:hover
+        color: white
+      &:last-child
+        margin-right: 0
+
+  &__socials
+    display: -webkit-flex
+    display: flex
+    align-items: center
+    margin-left: 40px
+    font-size: 14px
+    a
+      flex: 0 0 35px
+      display: flex
+      align-items: center
+      size: 35px
+      border-radius: 50%
+      justify-content: center
+      color: rgba(white, .5)
+      cursor: pointer
+      margin-right: 7px
+      transition: .25s $ease
+      &:last-child
+        margin-right: 0
+      &:hover
+        color: white
+      &.social-tg:hover
+        background-color: $facebook
+      &.social-vk:hover
+        background-color: $vk
+      &.social-fb:hover
+        background-color: $facebook
+      &.social-tw:hover
+        background-color: $twitter
+      &.social-insta:hover
+        background-color: $instagram

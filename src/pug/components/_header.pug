@@ -1,22 +1,31 @@
 // HEADER :: START
-header.header
+header.header.is-white
   .container
     .header__wrapper
       a(href="#").header__logo
-        +icon('ico-email')
+        +icon('ico-logo')
       ul.header__menu
-        - var list = ["Homepage", "Shop", "Blog", "Lorem"]
-          each item in list
-            li
-              a.header__menu-link(href="#")=item
-      
+        li
+          a(href="#") О нас
+        li
+          a(href="#") Публикации
+        li
+          a(href="#") Как это работает
+        li
+          a(href="#") Преимущества
+        li
+          a(href="#") Типы съемки
+        li
+          a(href="#") Гарантии
       .header__cta
-        .header__cart
-          +icon('ico-email')
-      
-      .header__hamburger
-        .hamburger.hamburger--squeeze(js-hamburger)
-          .hamburger-box
-            .hamburger-inner
-        
+        .header__drone
+          +icon('ico-drone')
+        .header__order
+          a(href="#").btn.btn-primary
+            //- span.btn-primary__corner
+            //- span.btn-primary__corner
+            //- span.btn-primary__corner
+            //- span.btn-primary__corner
+            span Заказать
+
 // HEADER :: END

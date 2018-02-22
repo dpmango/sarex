@@ -6,7 +6,7 @@
     "Sergey Khmelevskoy <sergey@khmelevskoy.co>"
   ],
   "license": "ISC",
-  "homepage": "https://github.com/dpmango/sarex",
+  "homepage": "https://github.com/dpmango/gulp-starter-pack",
   "ignore": [
     "**/.*",
     "node_modules",
