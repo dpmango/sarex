@@ -38,8 +38,32 @@
     color: white
     padding: 100px 0 50px 0
   &__play
+    position: relative
+    size: 68px
     margin-bottom: 20px
+    border-radius: 50%
+    overflow: hidden
     cursor: pointer
+    display: flex
+    align-items: center
+    justify-content: center
+    transition: .25s .15s $ease
+    .ico
+      transform: translate(-2px, 2px)
+      font-size: 11px
+      color: $colorYellow
+    &-circle
+      position: absolute 0
+      stroke-dasharray: 160 160
+      transition: .35s $ease
+    &:hover
+      // background-color: $colorYellow
+      .ico
+        color: white
+        font-size: 22px
+      .hero__play-circle
+        stroke-dashoffset: 160
+
   &__title
     font-size: 42px
     line-height: 1.42
@@ -79,3 +103,47 @@
       letter-spacing: 0.05em
       display: inline-block
       margin-left: 20px
+
+
+.socials
+  position: fixed
+  top: 50%
+  transform: translateY(-50%)
+  right: 30px
+  z-index: 4
+  a
+    position: relative
+    display: block
+    size: 41px
+    margin-bottom: 20px
+    color: white
+    display: flex
+    align-items: center
+    justify-content: center
+    font-size: 8px
+    border-radius: 50%
+    overflow: hidden
+    transition: .25s .15s $ease
+    .ico-social-fb, .ico-social-tg
+      font-size: 12px
+    .ico-social-you
+      font-size: 10px
+
+    &:hover
+      .socials__circle
+        stroke-dashoffset: 100
+      &.social-vk
+        background: $vk
+      &.social-fb
+        background: $facebook
+      &.social-tg
+        background: $facebook
+      &.social-you
+        background: $youtube
+    &:nth-child(even)
+      .socials__circle
+        transform: rotate(-90deg)
+  &__circle
+    position: absolute 0
+    stroke-dasharray: 100 100
+    transition: .25s $ease

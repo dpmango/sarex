@@ -1,0 +1,9 @@
+<svg
+ xmlns="http://www.w3.org/2000/svg"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ width="68.5px" height="69.5px" class="hero__play-circle">
+<path fill-rule="evenodd"  stroke="rgb(255, 255, 255)" stroke-width="1px" stroke-linecap="butt" stroke-linejoin="miter" opacity="0.851" fill="none"
+ d="M0.501,36.999 C0.501,29.396 3.193,22.432 7.661,17.040 C13.255,10.289 21.633,5.998 30.996,5.998 C47.838,5.998 61.491,19.879 61.491,36.999 C61.491,44.113 59.134,50.667 55.170,55.899 C49.594,63.258 40.840,67.999 30.996,67.999 "/>
+<path fill-rule="evenodd"  stroke="rgb(223, 165, 41)" stroke-width="2px" stroke-linecap="butt" stroke-linejoin="miter" fill="none"
+ d="M31.495,0.998 C50.822,0.998 66.490,16.893 66.490,36.499 "/>
+</svg>

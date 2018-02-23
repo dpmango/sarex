@@ -25,9 +25,10 @@ button
     padding: 17px 45px
     color: $colorYellow
     font-weight: 500
+    transition: color .25s .1s $ease, background .25s .2s $ease
     &:hover
       color: white
-      background: rgba($colorYellow, .3)
+      background: $colorYellow
 
   &-corner
     &::before, &::after
