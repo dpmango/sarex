@@ -1,11 +1,9 @@
 // INDEX
-
-
-
 .section
   min-height: 100vh
   background: white
   display: flex
+  padding: 50px 0
   flex-direction: column
   border-bottom: 1px solid #e1e1e1
   > .container
@@ -122,6 +120,48 @@
         background: #e1e1e1
   &__btn
     margin-top: 20px
+
++r($tablet)
+  .section
+    min-height: 1px
+    height: auto
+    max-height: 100%
+
+  .b-text
+    &__wrapper
+      flex-direction: column-reverse
+      align-items: flex-start
+    &__content
+      padding-left: 10px
+      padding-right: 10px
+      padding-top: 20px
+    &__image
+      margin-right: -10%
+      margin-left: 10%
+      &.pl5
+        margin-left: -15%
+        margin-right: 0
+      &.mr-5
+        margin-right: -25%
+        margin-left: 0
+    &__name
+      position: relative
+      font-size: 30px
+      padding-top: 40px
+      span
+        margin-left: 0
+    &__sec-num
+      left: 0
+      top: 15px
+    &__how-it-works
+      margin-bottom: 20px
+    &__btn
+      text-align: center
+      .icon
+        transition: .25s .15s $ease
+      &:hover
+        .icon
+          filter: brightness(0%) invert(1)
 
 
 .callback-count

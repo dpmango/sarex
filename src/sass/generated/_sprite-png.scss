@@ -63,8 +63,8 @@ $sprite: (
 		image: '../img/sprite.png'
 	),
 	logo4-grad: (
-		offset-x: -145px,
-		offset-y: -71px,
+		offset-x: -216px,
+		offset-y: -96px,
 		width: 51px,
 		height: 51px,
 		total-width: 307px,
@@ -72,8 +72,8 @@ $sprite: (
 		image: '../img/sprite.png'
 	),
 	logo4: (
-		offset-x: -216px,
-		offset-y: -96px,
+		offset-x: -145px,
+		offset-y: -71px,
 		width: 51px,
 		height: 51px,
 		total-width: 307px,
@@ -94,6 +94,15 @@ $sprite: (
 		offset-y: -48px,
 		width: 91px,
 		height: 38px,
+		total-width: 307px,
+		total-height: 280px,
+		image: '../img/sprite.png'
+	),
+	map: (
+		offset-x: -277px,
+		offset-y: -96px,
+		width: 20px,
+		height: 20px,
 		total-width: 307px,
 		total-height: 280px,
 		image: '../img/sprite.png'
@@ -213,6 +222,9 @@ $sprite: (
 	}
 	.icon-logo5 {
 		@include sprite(logo5)
+	}
+	.icon-map {
+		@include sprite(map)
 	}
 	.icon-play {
 		@include sprite(play)

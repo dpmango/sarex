@@ -1,6 +1,6 @@
 /* HEADER
 .header
-  position: absolute
+  position: fixed
   top: 0px
   right: 0
   left: 0
@@ -56,10 +56,12 @@
     .header
       &__wrapper
         color: white
-        
+
   &.is-fixed
-    transition: .25s $ease
-    transform: translate3d(0,-100%,0)
+    transition: background .25s $ease
+
+  &.is-fixed-visible
+    // position: fixed
     background: white
     .header__wrapper
       color: #231f20
@@ -68,9 +70,6 @@
       .header__wrapper
         color: white
 
-  &.is-fixed-visible
-    position: fixed
-    transform: translate3d(0,0,0)
 
 +r(1300)
   .header

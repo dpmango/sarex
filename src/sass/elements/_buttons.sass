@@ -29,6 +29,11 @@ button
     &:hover
       color: white
       background: $colorYellow
+    span:last-child
+      display: flex
+      align-items: center
+      span
+        margin-left: 15px
 
   &-corner
     &::before, &::after
@@ -77,6 +82,7 @@ button
     color: white
     font-weight: 500
     transition: color .25s .25s $ease
+
     &::after
       display: inline-block
       content: ' '

@@ -7,9 +7,15 @@
     align-items: center
     justify-content: center
     min-height: 100px
+    .slick-track
+      display: flex !important
+      align-items: center
+      justify-content: center
+      min-height: 100px
   &__img
     position: relative
     flex: 0 0 144px
+    height: auto !important
     text-align: center
     img
       max-width: 100%
@@ -27,3 +33,12 @@
           opacity: 0
         &:nth-child(2)
           opacity: 1
+
++r($tablet)
+  .logos
+    &__wrapper
+      padding-bottom: 35px
+      .slick-dots
+        bottom: 10px
+        li button::after
+          background: rgba(#2f353a, .35)

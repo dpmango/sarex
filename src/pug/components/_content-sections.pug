@@ -34,11 +34,16 @@
               span.btn-corner
               span.btn-corner
               span.btn-corner
-              span Показать на карте
+              span 
+                i.icon.icon-map
+                span Показать на карте
             
         .b-text__image.pl5.wow(data-animation-delay=".5s" data-animation-class="wowFadeLeft")
-          img(src='img/sectionImg_2.png' srcset='img/sectionImg_2@2x.png 2x')
-        
+          picture
+            source(media="(min-width: 768px)" srcset="img/sectionImg_2.png 1x, img/sectionImg_2@2x.png 2x")
+            source(media="(max-width: 768px)" srcset="img/sectionImg_2Mobile.png 1x, img/sectionImg_2Mobile@2x.png 2x")
+            img.section-bg(src="img/el/sectionImg_2.png")
+              
 // SECTION
 .section
   .container

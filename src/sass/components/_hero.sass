@@ -103,7 +103,42 @@
       letter-spacing: 0.05em
       display: inline-block
       margin-left: 20px
+    .hero-scroll-svg-1, .hero-scroll-svg-2
+      transition: .25s $ease
+    &:hover
+      .hero-scroll-svg-1
+        fill: rgb(255, 255, 255)
+        opacity: .2
+      .hero-scroll-svg-2
+        fill: rgb(223, 165, 41)
+        opacity: 1
 
++r($desktop)
+  .hero
+    // &__title
+    //   font-size: 34px
+
++r($tablet)
+  .hero
+    &__wrapper
+      padding: 80px 0 20px 0
+      max-width: 450px
+      margin-bottom: auto
+    &__title
+      font-size: 24px
+    &__subtitle
+
+    &__cta
+      margin-top: 10px
+
+    &__join
+      margin-top: 20px
+    &__scroll
+      position: absolute
+      bottom: 20px
+      margin-top: 20px
+      span
+        display: none
 
 .socials
   position: fixed
@@ -147,3 +182,7 @@
     position: absolute 0
     stroke-dasharray: 100 100
     transition: .25s $ease
+
++r($desktop)
+  .socials
+    display: none

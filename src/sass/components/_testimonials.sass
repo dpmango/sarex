@@ -18,7 +18,7 @@
     align-items: center
     justify-content: center
     min-height: 100vh
-    padding-top: 100px 0 50px 0
+    padding: 100px 0 50px 0
     +rhmin(800)
       min-height: 1px
       height: 100vh
@@ -110,3 +110,26 @@
       button::after
         height: 20px
         background: $colorYellow
+
+
++r($tablet)
+  .testimonials
+    &__slider
+      margin-left: -20px
+      margin-right: -20px
+    &-card
+      min-height: 1px
+      height: auto
+      max-height: 100%
+      padding-left: 30px
+      padding-right: 30px
+      padding-top: 45px
+      &__text
+        line-height: 1.5
+        padding-top: 50px
+      &__author
+        margin-top: 30px
+        margin-right: auto
+        margin-bottom: 40px
+    .slick-dots
+      bottom: 25px

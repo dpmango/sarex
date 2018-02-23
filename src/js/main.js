@@ -7,37 +7,25 @@ $(document).ready(function(){
   var _window = $(window);
   var _document = $(document);
 
-  // BREAKPOINT SETTINGS
-  var bp = {
-    mobileS: 375,
-    mobile: 568,
-    tablet: 768,
-    desktop: 992,
-    wide: 1336,
-    hd: 1680
-  }
-
   ////////////
   // READY - triggered when PJAX DONE
   ////////////
   function pageReady(){
-    $(window).scrollTop(1);
-    $(window).scroll();
-    $(window).resize();
 
     legacySupport();
     initHeaderScroll();
     pagination();
     _window.on('scroll', throttle(pagination, 50));
-    _window.on('scroll', debounce(pagination, 250));
+    _window.on('resize', debounce(pagination, 250));
 
     initPopups();
     initSliders();
     initScrollMonitor();
     initMasks();
 
-    // development helper
-    _window.on('resize', debounce(setBreakpoint, 250))
+    $(window).scrollTop(1);
+    $(window).scroll();
+    $(window).resize();
   }
 
   // this is a master function which should have all functionality
@@ -197,7 +185,7 @@ $(document).ready(function(){
 
     // Get id of current scroll item
     var cur = sections.map(function(){
-     if ($(this).offset().top < vScroll + (headerHeight))
+     if ($(this).offset().top < vScroll + (headerHeight / 2))
        return this;
     });
     // Get current element
@@ -218,7 +206,7 @@ $(document).ready(function(){
 
   // click to navigate
   _document
-    .on('click', '.pagination__el, [js-scrollDown]', function(){
+    .on('click', '.pagination__el, [js-scrollTo]', function(){
       var selectedId = $(this).data('section') !== undefined ? $(this).data('section') : $(this).data('section-to');
       var cur = $('.hero, .page__scroller [data-section]').filter(function(){
        if ($(this).data('section') == selectedId){return this};
@@ -228,9 +216,6 @@ $(document).ready(function(){
           scrollTop: targetScroll}, 1000);
       return false;
     })
-
-
-
 
   //////////
   // SLIDERS
@@ -250,6 +235,63 @@ $(document).ready(function(){
       adaptiveHeight: true
     })
 
+    var _logosSlickMobile = $('.logos__wrapper');
+    var logosSlickMobileOptions = {
+      mobileFirst: true,
+      dots: true,
+      arrows: false,
+      variableWidth: true,
+      centerMode: true,
+      responsive: [
+        {
+          breakpoint: 768,
+          settings: "unslick"
+        }
+      ]
+    }
+    _logosSlickMobile.slick(logosSlickMobileOptions);
+
+    _window.on('resize', debounce(function(e){
+      if ( _window.width() > 768 ) {
+        if (_logosSlickMobile.hasClass('slick-initialized')) {
+          _logosSlickMobile.slick('unslick');
+        }
+        return
+      }
+      if (!_logosSlickMobile.hasClass('slick-initialized')) {
+        return _logosSlickMobile.slick(logosSlickMobileOptions);
+      }
+    }, 300));
+
+    // prices
+    var _priceSlickMobile = $('.prices__wrapper');
+    var priceSlickMobileOptions = {
+      mobileFirst: true,
+      dots: true,
+      arrows: false,
+      variableWidth: true,
+      centerMode: true,
+      responsive: [
+        {
+          breakpoint: 768,
+          settings: "unslick"
+        }
+      ]
+    }
+    _priceSlickMobile.slick(priceSlickMobileOptions);
+
+    _window.on('resize', debounce(function(e){
+      if ( _window.width() > 768 ) {
+        if (_priceSlickMobile.hasClass('slick-initialized')) {
+          _priceSlickMobile.slick('unslick');
+        }
+        return
+      }
+      if (!_priceSlickMobile.hasClass('slick-initialized')) {
+        return _priceSlickMobile.slick(priceSlickMobileOptions);
+      }
+    }, 300));
+
   }
 
   //////////
@@ -268,33 +310,9 @@ $(document).ready(function(){
       preloader: false,
       midClick: true,
       removalDelay: 300,
-      mainClass: 'popup-buble',
-      callbacks: {
-        // beforeOpen: function() {
-        //   startWindowScroll = _window.scrollTop();
-        //   // $('html').addClass('mfp-helper');
-        // },
-        // close: function() {
-        //   // $('html').removeClass('mfp-helper');
-        //   _window.scrollTop(startWindowScroll);
-        // }
-      }
+      mainClass: 'popup-buble'
     });
-    //
-    // $('[js-popup-gallery]').magnificPopup({
-  	// 	delegate: 'a',
-  	// 	type: 'image',
-  	// 	tLoading: 'Загрузка #%curr%...',
-  	// 	mainClass: 'popup-buble',
-  	// 	gallery: {
-  	// 		enabled: true,
-  	// 		navigateByImgClick: true,
-  	// 		preload: [0,1]
-  	// 	},
-  	// 	image: {
-  	// 		tError: '<a href="%url%">The image #%curr%</a> could not be loaded.'
-  	// 	}
-  	// });
+
 
     $('[js-popupVideo]').magnificPopup({
       // disableOn: 700,
@@ -400,29 +418,6 @@ $(document).ready(function(){
       // }, 100));
     });
 
-  }
-
-  //////////
-  // DEVELOPMENT HELPER
-  //////////
-  function setBreakpoint(){
-    var wHost = window.location.host.toLowerCase()
-    var displayCondition = wHost.indexOf("localhost") >= 0 || wHost.indexOf("surge") >= 0
-    if (displayCondition){
-      console.log(displayCondition)
-      var wWidth = _window.width();
-      var wHeight = _window.height();
-
-      var content = "<div class='dev-bp-debug'>"+wWidth+"/" +wHeight+ "</div>";
-
-      $('.page').append(content);
-      setTimeout(function(){
-        $('.dev-bp-debug').fadeOut();
-      },1000);
-      setTimeout(function(){
-        $('.dev-bp-debug').remove();
-      },1500)
-    }
   }
 
 });
