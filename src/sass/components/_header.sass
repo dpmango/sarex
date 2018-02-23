@@ -26,11 +26,13 @@
     font-size: 13px
     font-weight: 500
     letter-spacing: 0.1em
-    margin: 0 auto
+    margin: 0 auto 0 auto
     padding: 0
     li
       display: inline-block
-      margin-right: 50px
+      margin-right: 40px
+      &:last-child
+        margin-right: 0
     a
       transition: color .25s $ease
       &:hover
@@ -39,22 +41,28 @@
   &__cta
     display: flex
     align-items: center
-    margin-left: auto
+    // margin-left: auto
     padding-left: 30px
   &__drone
     font-size: 30px
     color: $colorYellow
   &__order
-    padding-left: 30px
+    padding-left: 25px
 
   &__hamburger
-    // display: none
-    padding-left: 20px
+    display: none
 
   &.is-white
     .header
       &__wrapper
         color: white
+
+  &.is-black
+    .header
+      &__wrapper
+        color: #231f20
+      &__logo
+        color: #231f20
 
   &.is-fixed
     transition: .25s $ease
@@ -67,20 +75,92 @@
     position: fixed
     transform: translate3d(0,0,0)
 
-+r($desktop)
++r(1300)
   .header
-    &__cta
+    &__menu
+      li
+        margin-right: 20px
+
++r(1150)
+  .header
+    &__hamburger
+      flex: 0 0 200px
+      display: block
+      margin-right: auto
+    &__logo
+      padding: 0
+      margin: 0 auto
+    &__menu
       display: none
+    &__cta
+      flex: 0 0 200px
+      margin-left: auto
+      padding-left: 0
 
 +r($tablet)
   .header
     &__menu
       display: none
+    &__wrapper
+      padding-top: 20px
+      padding-bottom: 20px
     &__hamburger
-      margin-left: auto
+      flex: 0 0 40px
       display: block
+    &__cta
+      flex: 0 0 40px
+    &__order
+      display: none
 
-+r($mobile)
-  .header
-    &__logo
-      font-size: 30px
+
+
+
+// MOBILE NAVI
+.mobile-navi
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  background: white
+  padding-top: 70px
+  opacity: 0
+  display: flex
+  flex-direction: column
+  z-index: 9
+  pointer-events: all
+  transform: translate3d(0,-100%,0)
+  transition: .25s $ease
+  &.is-active
+    opacity: 1
+    pointer-events: all
+    transform: translate3d(0,0,0)
+  &__wrapper
+    flex: 1 0 auto
+    display: flex
+    flex-direction: column
+    overflow-y: scroll
+    padding: 0 30px
+  &__menu
+    list-style: none
+    flex: 0 1 auto
+    font-size: 18px
+    font-weight: 500
+    letter-spacing: 0.1em
+    color: #2f353a
+    margin: 0 auto 0 auto
+    padding: 35px 0
+    text-align: center
+    li
+      display: block
+      margin-bottom: 10px
+    a
+      display: inline-block
+      padding: 5px
+      transition: color .25s $ease
+      &:hover
+        color: $colorYellow
+  &__cta
+    max-width: 400px
+    margin-left: auto
+    margin-right: auto

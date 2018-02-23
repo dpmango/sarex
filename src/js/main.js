@@ -21,9 +21,9 @@ $(document).ready(function(){
   // READY - triggered when PJAX DONE
   ////////////
   function pageReady(){
-    _window.scrollTop(0);
-    _window.scroll();
-    _window.resize();
+    $(window).scrollTop(1);
+    $(window).scroll();
+    $(window).resize();
 
     legacySupport();
     updateHeaderActiveClass();
@@ -98,15 +98,83 @@ $(document).ready(function(){
     }, 10));
   }
 
+  var preventKeys = {
+    37: 1, 38: 1, 39: 1, 40: 1
+  };
+
+  function preventDefault(e) {
+    e = e || window.event;
+    if (e.preventDefault)
+      e.preventDefault();
+    e.returnValue = false;
+  }
+
+  function preventDefaultForScrollKeys(e) {
+    if (preventKeys[e.keyCode]) {
+      preventDefault(e);
+      return false;
+    }
+  }
+
+  function disableScroll() {
+    var target = window
+    if (window.addEventListener) // older FF
+      target.addEventListener('DOMMouseScroll', preventDefault, false);
+    target.onwheel = preventDefault; // modern standard
+    target.onmousewheel = target.onmousewheel = preventDefault; // older browsers, IE
+    target.ontouchmove = preventDefault; // mobile
+    target.onkeydown = preventDefaultForScrollKeys;
+  }
+  function enableScroll() {
+    var target = window
+    if (window.removeEventListener)
+      target.removeEventListener('DOMMouseScroll', preventDefault, false);
+    target.onmousewheel = target.onmousewheel = null;
+    target.onwheel = null;
+    target.ontouchmove = null;
+    target.onkeydown = null;
+  }
+
+  function blockScroll(unlock) {
+    if ($('.mobile-navi').is('.is-active')) {
+      disableScroll();
+    } else {
+      enableScroll();
+    }
+
+    if (unlock) {
+      enableScroll();
+    }
+  };
+
+  function bindOverflowScroll(){
+    var $menuLayer = $(".mobile-navi");
+    $menuLayer.bind('touchstart', function (ev) {
+        var $this = $(this);
+        var layer = $menuLayer.get(0);
+
+        if ($this.scrollTop() === 0) $this.scrollTop(1);
+        var scrollTop = layer.scrollTop;
+        var scrollHeight = layer.scrollHeight;
+        var offsetHeight = layer.offsetHeight;
+        var contentHeight = scrollHeight - offsetHeight;
+        if (contentHeight == scrollTop) $this.scrollTop(scrollTop-1);
+    });
+  }
+  // bindOverflowScroll();
 
   // HAMBURGER TOGGLER
   _document.on('click', '[js-hamburger]', function(){
     $(this).toggleClass('is-active');
+    $('.header').toggleClass('is-black')
     $('.mobile-navi').toggleClass('is-active');
+    blockScroll();
   });
 
   function closeMobileMenu(){
+    blockScroll(true);
     $('[js-hamburger]').removeClass('is-active');
+    $('.header').removeClass('is-black')
     $('.mobile-navi').removeClass('is-active');
   }
 
@@ -280,14 +348,14 @@ $(document).ready(function(){
       }, 100, {
         'leading': true
       }));
-      elWatcher.exitViewport(throttle(function() {
-        $(el).removeClass(animationClass);
-        $(el).css({
-          'animation-name': 'none',
-          'animation-delay': 0,
-          'visibility': 'hidden'
-        });
-      }, 100));
+      // elWatcher.exitViewport(throttle(function() {
+      //   $(el).removeClass(animationClass);
+      //   $(el).css({
+      //     'animation-name': 'none',
+      //     'animation-delay': 0,
+      //     'visibility': 'hidden'
+      //   });
+      // }, 100));
     });
 
   }

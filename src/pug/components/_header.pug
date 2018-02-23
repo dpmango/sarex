@@ -2,6 +2,10 @@
 header.header.is-white
   .container
     .header__wrapper
+      .header__hamburger
+        .hamburger.hamburger--squeeze(js-hamburger)
+          .hamburger-box
+            .hamburger-inner
       a(href="#").header__logo
         +icon('ico-logo')
       ul.header__menu
@@ -22,10 +26,30 @@ header.header.is-white
           +icon('ico-drone')
         .header__order
           a(href="#callback" js-popup).btn.btn-primary
-            //- span.btn-primary__corner
-            //- span.btn-primary__corner
-            //- span.btn-primary__corner
-            //- span.btn-primary__corner
+            span.btn-corner
+            span.btn-corner
+            span.btn-corner
+            span.btn-corner
             span Заказать
 
 // HEADER :: END
+
+.mobile-navi
+  .mobile-navi__wrapper
+    ul.mobile-navi__menu
+      li
+        a(href="#") О нас
+      li
+        a(href="#") Публикации
+      li
+        a(href="#") Как это работает
+      li
+        a(href="#") Преимущества
+      li
+        a(href="#") Типы съемки
+      li
+        a(href="#") Гарантии
+    
+    .mobile-navi__cta
+      a(href="#").btn.btn-black
+        span Заказать аэросъемку
