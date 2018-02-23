@@ -26,17 +26,18 @@ $(document).ready(function(){
     $(window).resize();
 
     legacySupport();
-    updateHeaderActiveClass();
     initHeaderScroll();
+    pagination();
+    _window.on('scroll', throttle(pagination, 50));
+    _window.on('scroll', debounce(pagination, 250));
 
     initPopups();
     initSliders();
     initScrollMonitor();
     initMasks();
-    // initLazyLoad();
 
     // development helper
-    _window.on('resize', debounce(setBreakpoint, 200))
+    _window.on('resize', debounce(setBreakpoint, 250))
   }
 
   // this is a master function which should have all functionality
@@ -64,13 +65,6 @@ $(document).ready(function(){
     .on('click', '[href="#"]', function(e) {
   		e.preventDefault();
   	})
-    .on('click', 'a[href^="#section"]', function() { // section scroll
-      var el = $(this).attr('href');
-      $('body, html').animate({
-          scrollTop: $(el).offset().top}, 1000);
-      return false;
-    })
-
 
   // HEADER SCROLL
   // add .header-static for .page or body
@@ -189,6 +183,54 @@ $(document).ready(function(){
       }
     });
   }
+
+  //////////
+  // PAGINATION
+  //////////
+
+  function pagination(){
+    // Cache selectors
+    var paginationAnchors = $(".pagination").find(".pagination__el");
+    var sections = $('.hero, .page__scroller [data-section]');
+    var headerHeight = $('.header').height();
+    var vScroll = _window.scrollTop();
+
+    // Get id of current scroll item
+    var cur = sections.map(function(){
+     if ($(this).offset().top < vScroll + (headerHeight))
+       return this;
+    });
+    // Get current element
+    cur = $(cur[cur.length-1]);
+    var id = cur && cur.length ? cur.data('section') : "1";
+    var headerClass = cur && cur.length ? cur.data('header') : ""
+
+    // Set/remove active class
+    paginationAnchors.removeClass("is-active").filter("[data-section='"+id+"']").addClass("is-active");
+
+    // set header color
+    if ( headerClass ){
+      $('.header').addClass('is-white-scroll')
+    } else{
+      $('.header').removeClass('is-white-scroll')
+    }
+  }
+
+  // click to navigate
+  _document
+    .on('click', '.pagination__el, [js-scrollDown]', function(){
+      var selectedId = $(this).data('section') !== undefined ? $(this).data('section') : $(this).data('section-to');
+      var cur = $('.hero, .page__scroller [data-section]').filter(function(){
+       if ($(this).data('section') == selectedId){return this};
+      });
+      var targetScroll = $(cur).data('section') == "1" ? 0 : $(cur).offset().top
+      $('body, html').animate({
+          scrollTop: targetScroll}, 1000);
+      return false;
+    })
+
+
+
 
   //////////
   // SLIDERS

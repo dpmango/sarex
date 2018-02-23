@@ -1,5 +1,5 @@
 // HERO
-.hero
+.hero(data-section="1")
   .container
     .hero__wrapper
       .hero__play.wow(data-animation-delay=".5s" data-animation-class="wowFadeDown" js-popupVideo href="https://www.youtube.com/watch?v=S_dfq9rFWAE")
@@ -16,7 +16,7 @@
           span.btn-corner
           span Заказать аэросъемку
       .hero__join.wow Есть коптер? <a href="#">Присоединяйся к нам</a>
-      .hero__scroll.wow(data-animation-delay="1s")
+      .hero__scroll.wow(data-animation-delay="1s" js-scrollDown data-section-to="2")
         include ../../inline-svg/scroll.svg
         span Скролл вниз
   
