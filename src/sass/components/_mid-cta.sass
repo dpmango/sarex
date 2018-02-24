@@ -54,6 +54,17 @@
         letter-spacing: 0.1em
         color: #444041
 
++r($desktop)
+  .mid-cta
+    &__wrapper
+      flex-wrap: wrap
+    &__counter, &__name
+      flex-basis: 50%
+    &__counter
+      justify-content: flex-end
+    &__button
+      order: 3
+
 +r($tablet)
   .mid-cta
     &__wrapper

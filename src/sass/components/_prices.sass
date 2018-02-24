@@ -130,12 +130,28 @@
       padding-top: 20px
       padding-bottom: 20px
 
-+r($tablet)
++r($desktop)
   .prices
     min-height: 1px
     height: auto
     max-height: 100%
     padding-bottom: 0
+    &__wrapper
+      margin-left: -40px
+      margin-right: -40px
+      .slick-track
+        display: flex !important
+    .slick-dots
+      bottom: 25px
+
+  .prices-card
+    flex: 0 0 300px
+    width: 300px
+    display: flex !important
+    height: auto !important
+
++r($tablet)
+  .prices
     padding-top: 25px
     &__title
       font-size: 30px
@@ -143,12 +159,4 @@
       padding-right: 10px
     &__wrapper
       margin-left: -20px
-      margin: -20px
-      .slick-track
-        display: flex !important
-
-  .prices-card
-    flex: 0 0 300px
-    width: 300px
-    display: flex !important
-    height: auto !important
+      margin-right: -20px

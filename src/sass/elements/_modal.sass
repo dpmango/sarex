@@ -10,6 +10,10 @@ html.mfp-helper
     height: 100%
     -webkit-transform: translateZ(0)
 
+.mfp-container
+  padding-left: 10px
+  padding-right: 10px
+
 .modal
   background: white
   padding: 35px 25px
@@ -78,6 +82,15 @@ html.mfp-helper
       &:hover
         color: rgba($colorYellow, .75)
 
++r($mobile)
+  .modal
+    padding-left: 20px
+    padding-right: 20px
+    &__title
+      font-size: 24px
+    &__subtitle
+      margin-top: 12px
+
 
 // Fade-zoom animation for first dialog
 .popup-buble
@@ -129,5 +142,5 @@ html.mfp-helper
 +r($mobile)
   .popup-buble
     .mfp-close
-      right: 10px
-      top: 10px
+      top: 0
+      right: 5px

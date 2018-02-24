@@ -45,6 +45,8 @@
         color: white
       &:last-child
         margin-right: 0
+  &__top
+    display: none
 
   &__socials
     display: flex
@@ -80,6 +82,30 @@
 
 +r($tablet)
   .footer
+    &__top
+      display: block
+      position: relative
+      display: block
+      size: 42px
+      margin-top: 10px
+      margin-bottom: 10px
+      color: $colorYellow
+      display: flex
+      align-items: center
+      justify-content: center
+      font-size: 7px
+      border-radius: 50%
+      overflow: hidden
+      cursor: pointer
+      transition: .25s .15s $ease
+      &:hover
+        .footer__circle
+          stroke-dashoffset: 100
+    &__circle
+      position: absolute 0
+      stroke-dasharray: 100 100
+      transition: .25s $ease
+
     &__wrapper
       height: auto
       padding: 20px 0 40px 0

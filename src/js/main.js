@@ -199,9 +199,15 @@ $(document).ready(function(){
     // set header color
     if ( headerClass ){
       $('.header').addClass('is-white-scroll')
+      $('.pagination').removeClass('is-dark')
     } else{
       $('.header').removeClass('is-white-scroll')
+      $('.pagination').addClass('is-dark')
     }
+    if (id == "1"){
+      $('.pagination').removeClass('is-dark')
+    }
+
   }
 
   // click to navigate
@@ -212,6 +218,7 @@ $(document).ready(function(){
        if ($(this).data('section') == selectedId){return this};
       });
       var targetScroll = $(cur).data('section') == "1" ? 0 : $(cur).offset().top
+      closeMobileMenu()
       $('body, html').animate({
           scrollTop: targetScroll}, 1000);
       return false;
@@ -271,9 +278,10 @@ $(document).ready(function(){
       arrows: false,
       variableWidth: true,
       centerMode: true,
+      initialSlide: 1,
       responsive: [
         {
-          breakpoint: 768,
+          breakpoint: 992,
           settings: "unslick"
         }
       ]
@@ -281,7 +289,7 @@ $(document).ready(function(){
     _priceSlickMobile.slick(priceSlickMobileOptions);
 
     _window.on('resize', debounce(function(e){
-      if ( _window.width() > 768 ) {
+      if ( _window.width() > 992 ) {
         if (_priceSlickMobile.hasClass('slick-initialized')) {
           _priceSlickMobile.slick('unslick');
         }
@@ -356,6 +364,13 @@ $(document).ready(function(){
   // UI
   ////////////
 
+  $('input[name="time"]').each(function(i,input){
+    var d = new Date();
+    var h = d.getHours();
+    var m = d.getMinutes();
+
+    $(input).val(h + ":" + m)
+  })
   // focus in
   _document.on('focus', '.ui-input', function(){
     $(this).addClass('is-focused');
@@ -374,7 +389,36 @@ $(document).ready(function(){
 
   // Masked input
   function initMasks(){
-    $("input[name='time']").mask("00:00",{placeholder:"12:00"});
+    // $("input[name='time']").mask("00:00",{placeholder:"12:00"});
+    $("input[name='time']").mask('AB:CD', {
+		translation: {
+			A: { pattern: /[0-2]/ },
+			B: { pattern: /[0-9]/ },
+			C: { pattern: /[0-6]/ },
+			D: { pattern: /[0-9]/ }
+		},
+		onKeyPress: function(a, b, c, d) {
+			if (!a) return;
+			let m = a.match(/(\d{1})/g);
+			if (!m) return;
+			if (parseInt(m[0]) === 3) {
+				d.translation.B.pattern = /[0-1]/;
+			} else {
+				d.translation.B.pattern = /[0-9]/;
+			}
+			if (parseInt(m[2]) == 1) {
+				d.translation.D.pattern = /[0-2]/;
+			} else {
+				d.translation.D.pattern = /[0-9]/;
+			}
+			let temp_value = c.val();
+			c.val('');
+			c.unmask().mask('AB:CD', d);
+			c.val(temp_value);
+		}
+	})
+	.keyup();
+
     $("input[type='tel']").mask("+7 (000) 000-0000", {placeholder: "+7 (___) ___-____"});
   }
 

@@ -50,11 +50,22 @@
     line-height: 1.78
     color: rgba(white, .67)
 
-+r($tablet)
++r($desktop)
   .benefits
     min-height: 1px
     height: auto
     max-height: 100%
+    &__wrapper
+      padding: 100px 10px
+      flex-wrap: wrap
+      justify-content: center
+  .benefits-card
+    flex-basis: 50%
+
+
+
++r($tablet)
+  .benefits
     &__wrapper
       padding: 50px 10px
       display: block

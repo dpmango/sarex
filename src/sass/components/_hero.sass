@@ -186,3 +186,24 @@
 +r($desktop)
   .socials
     display: none
+    &--mobile
+      position: static
+      display: flex
+      align-items: center
+      justify-content: center
+      transform: none
+      a
+        color: $fontColor
+        margin-bottom: 0
+        margin-right: 15px
+        &:last-child
+          margin-right: 0
+        .socials__circle
+          transform: rotate(-90deg)
+          path:nth-child(1)
+            stroke: $fontColor
+        &:nth-child(3), &:nth-child(3)
+          .socials__circle
+            transform: none
+        &:hover
+          color: white

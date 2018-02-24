@@ -11,6 +11,7 @@
     padding-bottom: 35px
     display: flex
     align-items: center
+    transition: .25s $ease
   &__logo
     flex: 0 0 auto
     font-size: 0px
@@ -44,6 +45,7 @@
     // margin-left: auto
     padding-left: 30px
   &__drone
+    display: inline-block
     font-size: 30px
     color: $colorYellow
   &__order
@@ -53,9 +55,12 @@
     display: none
 
   &.is-white
-    .header
-      &__wrapper
-        color: white
+    .header__wrapper
+      color: white
+  &.is-black
+    .header__wrapper
+      color: #231f20
+
 
   &.is-fixed
     transition: background .25s $ease
@@ -69,7 +74,9 @@
       background: transparent
       .header__wrapper
         color: white
-
+    &.is-black
+      .header__wrapper
+        color: #231f20
 
 +r(1300)
   .header
@@ -95,6 +102,14 @@
 
 +r($tablet)
   .header
+    &.is-fixed-visible
+      // position: fixed
+      background: white !important
+      box-shadow: 0px 4px 8px rgba($fontColor, .1)
+      .header__wrapper
+        padding-top: 10px
+        padding-bottom: 10px
+        color: #231f20 !important
     &__menu
       display: none
     &__wrapper
@@ -158,5 +173,15 @@
         color: $colorYellow
   &__cta
     max-width: 400px
+    min-width: 260px
     margin-left: auto
     margin-right: auto
+    display: flex
+    flex-direction: column
+    // align-items: center
+    .btn-black
+      padding-top: 20px
+      padding-bottom: 20px
+    .btn-primary
+      margin-top: 35px
+      margin-bottom: 25px

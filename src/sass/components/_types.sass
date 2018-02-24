@@ -103,12 +103,19 @@
       color: #91979c
       letter-spacing: 0.025em
 
-
-+r($tablet)
++r($desktop)
   .types
     min-height: 1px
     height: auto
     max-height: 100%
+    &__wrapper
+      padding-top: 60px
+  .types
+    &-card
+      min-height: 140px
+
++r($tablet)
+  .types
     &__wrapper
       display: block
       padding-top: 20px

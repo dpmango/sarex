@@ -2,6 +2,10 @@
 footer.footer
   .container
     .footer__wrapper
+      .footer__top(js-scrollTo data-section-to="1")
+        +icon('ico-top-arrow')
+        include ../../inline-svg/top-circle.svg
+        
       .footer__copy © 2018 Sarex Все права защищены
       .footer__contacts
         a(href="tel:+7(977)880-58-77").footer__contacts-phone +7(977)880-58-77

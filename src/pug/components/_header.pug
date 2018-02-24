@@ -10,19 +10,19 @@ header.header.is-white
         +icon('ico-logo')
       ul.header__menu
         li
-          a(href="#") О нас
+          a(href="#" js-scrollTo data-section-to="2") О нас
         li
           a(href="#") Публикации
         li
           a(href="#") Как это работает
         li
-          a(href="#") Преимущества
+          a(href="#" js-scrollTo data-section-to="3") Преимущества
         li
-          a(href="#") Типы съемки
+          a(href="#" js-scrollTo data-section-to="3") Типы съемки
         li
-          a(href="#") Гарантии
+          a(href="#" js-scrollTo data-section-to="6") Гарантии
       .header__cta
-        .header__drone
+        a(href="#callback" js-popup).header__drone
           +icon('ico-drone')
         .header__order
           a(href="#callback" js-popup).btn.btn-primary
@@ -38,18 +38,42 @@ header.header.is-white
   .mobile-navi__wrapper
     ul.mobile-navi__menu
       li
-        a(href="#") О нас
+        a(href="#" js-scrollTo data-section-to="2") О нас
       li
         a(href="#") Публикации
       li
         a(href="#") Как это работает
       li
-        a(href="#") Преимущества
+        a(href="#" js-scrollTo data-section-to="3") Преимущества
       li
-        a(href="#") Типы съемки
+        a(href="#" js-scrollTo data-section-to="3") Типы съемки
       li
-        a(href="#") Гарантии
+        a(href="#" js-scrollTo data-section-to="6") Гарантии
     
     .mobile-navi__cta
-      a(href="#").btn.btn-black
+      a(href="#callback" js-popup).btn.btn-black
         span Заказать аэросъемку
+      
+      a(href="#callback" js-popup).btn.btn-primary
+        span.btn-corner
+        span.btn-corner
+        span.btn-corner
+        span.btn-corner
+        span 
+          +icon('ico-drone')
+          span Присоедениться
+          
+      .socials.socials--mobile
+        a(href="#" target="_blank").social-tg
+          +icon('ico-social-tg')
+          include ../../inline-svg/social-circle.svg
+        a(href="#" target="_blank").social-fb
+          +icon('ico-social-fb')
+          include ../../inline-svg/social-circle.svg
+        a(href="#" target="_blank").social-you
+          +icon('ico-social-you')
+          include ../../inline-svg/social-circle.svg
+        a(href="#" target="_blank").social-vk
+          +icon('ico-social-vk')
+          include ../../inline-svg/social-circle.svg
+        

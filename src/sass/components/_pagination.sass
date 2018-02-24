@@ -6,7 +6,7 @@
   transform: translateY(-50%)
   +r($desktop)
     display: none
-    
+
   &__el
     position: relative
     padding: 7px
@@ -45,3 +45,7 @@
     &:hover
       &::after
         width: 20px
+  &.is-dark
+    .pagination__el
+      &::after
+        background: rgba($fontColor, .35)
