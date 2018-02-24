@@ -343,14 +343,9 @@ $(document).ready(function(){
         youtube: {
           index: 'youtube.com/',
           id: 'v=', // String that splits URL in a two parts, second part should be %id%
-          // Or null - full URL will be returned
-          // Or a function that should return %id%, for example:
-          // id: function(url) { return 'parsed id'; }
-
           src: '//www.youtube.com/embed/%id%?autoplay=1&controls=0&showinfo=0' // URL that will be set as a source for iframe.
         }
       },
-      // closeMarkup: '<button class="mfp-close"><div class="video-box__close-button btn"><div class="item"></div><div class="item"></div><div class="item"></div><div class="item"></div><img src="img/setting/video_close.svg" alt=""/></div></button>'
     });
 
 
@@ -476,45 +471,114 @@ if ( $('#contact-map').length > 0 ){
   google.maps.event.addDomListener(window, 'load', init);
 }
 
-
 function init() {
-    // Basic options for a simple Google Map
-    // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
+
+    // map
     var mapOptions = {
-        // How zoomed in you want the map to start at (always required)
-        zoom: 10,
-
-        // The latitude and longitude to center the map (always required)
+        zoom: 9,
         center: new google.maps.LatLng(55.655826, 37.617300),
-
-        // How you would like to style the map.
-        // This is where you would paste any style found on Snazzy Maps.
         styles: [{"featureType":"water","elementType":"geometry","stylers":[{"color":"#e9e9e9"},{"lightness":17}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#f5f5f5"},{"lightness":20}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ffffff"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#ffffff"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":18}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":16}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#f5f5f5"},{"lightness":21}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#dedede"},{"lightness":21}]},{"elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#ffffff"},{"lightness":16}]},{"elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#333333"},{"lightness":40}]},{"elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#f2f2f2"},{"lightness":19}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#fefefe"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#fefefe"},{"lightness":17},{"weight":1.2}]}]
     };
-
-    var icon = 'img/mapsMarker.png';
 
     // Get the HTML DOM element that will contain your map
     // We are using a div with id="map" seen below in the <body>
     var mapElement = document.getElementById('contact-map');
 
-    // Create the Google Map using our element and options defined above
     var map = new google.maps.Map(mapElement, mapOptions);
 
-    var contentString = '<div class="g-marker">'+
-        '<p><b>Офис и производство</b>Синельниковская ул., 12</p>'+
-        '</div>';
+    // markers
+    // var locations = [
+    //   {lat: -31.563910, lng: 147.154312},
+    //   {lat: -33.718234, lng: 150.363181},
+    // ]
+    var locations = [
+      "Москва, Красная площадь",
+      "Дорохово, Московская область",
+      "Подкопаевский пер., 4с7, Москва, 109028",
+      "Центральный административный округ, Тверской район",
+      "Съезжинский переулок, Москва",
+      "улица Варварка, 6с3, Москва",
+      "Большой Спасоглинищевский переулок, 12/3",
+      "Моховая улица, 11с1",
+      "Землянной вал 11, Москва",
+      "Ходныский бульвар 13",
+      "Стадион лужники",
+      "метро полежаевская"
+    ]
+    var geocodedLocations = [];
 
-    var infowindow = new google.maps.InfoWindow({
-      content: contentString
+    // geocoder for markers
+    var geocoder = new google.maps.Geocoder();
+    var markers = locations.map(function(adress, i) {
+      geocoder.geocode({ 'address': adress
+      }, function (results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          geocodedLocations.push({
+            lat: results[0].geometry.location.lat(),
+            lng: results[0].geometry.location.lng(),
+          });
+        }
+        if ( i = locations[locations.length - 1] ){
+          addMarkers();
+        }
+      });
     });
 
-    var marker = new google.maps.Marker({
-        position: new google.maps.LatLng(55.546167, 37.575505),
-        icon: icon,
-        map: map,
-        title: 'Офис и производство'
-    });
+    var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+    function addMarkers(){
+      var markers = geocodedLocations.map(function(location, i) {
+        return new google.maps.Marker({
+          position: location,
+          icon: '/img/mapsMarker1.png'
+          // label: labels[i % labels.length]
+        });
+      });
+
+      var clusterOptions = {
+        // imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
+        imagePath: '/img/mapsMarker',
+        styles:[
+          {
+            url: '/img/mapsMarker1.png',
+            height: 63,
+            width: 31,
+            // backgroundPosition: [0, 0],
+            anchor: [10,0],
+            textColor: "#FFF",
+            textSize: 13
+
+          },
+          {
+            url: '/img/mapsMarker2.png',
+            height: 75,
+            width: 53,
+            // backgroundPosition: "10px",
+            anchor: [20,0],
+            textColor: "#FFF",
+            textSize: 13
+          }
+        ]
+      }
+      var markerCluster = new MarkerClusterer(map, markers, clusterOptions);
+    }
+
+    // var icon = 'img/mapsMarker.png';
+    //
+    // var marker = new google.maps.Marker({
+    //     position: new google.maps.LatLng(55.546167, 37.575505),
+    //     icon: icon,
+    //     map: map,
+    //     title: 'Офис и производство'
+    // });
+
+    // var contentString = '<div class="g-marker">'+
+    //     '<p><b>Офис и производство</b>Синельниковская ул., 12</p>'+
+    //     '</div>';
+    //
+    // var infowindow = new google.maps.InfoWindow({
+    //   content: contentString
+    // });
 
     // marker.addListener('click', function() {
     //   infowindow.open(map, marker);
