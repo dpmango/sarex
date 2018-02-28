@@ -269,33 +269,47 @@ $(document).ready(function(){
       adaptiveHeight: true
     })
 
-    var _logosSlickMobile = $('.logos__wrapper');
-    var logosSlickMobileOptions = {
-      mobileFirst: true,
-      dots: true,
-      arrows: false,
-      variableWidth: true,
-      centerMode: true,
-      responsive: [
-        {
-          breakpoint: 768,
-          settings: "unslick"
-        }
-      ]
-    }
-    _logosSlickMobile.slick(logosSlickMobileOptions);
 
-    _window.on('resize', debounce(function(e){
-      if ( _window.width() > 768 ) {
-        if (_logosSlickMobile.hasClass('slick-initialized')) {
-          _logosSlickMobile.slick('unslick');
-        }
-        return
-      }
-      if (!_logosSlickMobile.hasClass('slick-initialized')) {
-        return _logosSlickMobile.slick(logosSlickMobileOptions);
-      }
-    }, 300));
+    var mySwiper = new Swiper('.logos', {
+      wrapperClass: 'logos__wrapper',
+      slideClass: 'logos__img',
+      watchOverflow: true,
+      // spaceBetween: 6,
+      slidesPerView: 'auto',
+      // freeMode: true,
+      pagination: {
+        el: '.swiper-pagination',
+        type: 'bullets',
+      },
+    });
+
+    // var _logosSlickMobile = $('.logos__wrapper');
+    // var logosSlickMobileOptions = {
+    //   mobileFirst: true,
+    //   dots: true,
+    //   arrows: false,
+    //   variableWidth: true,
+    //   centerMode: true,
+    //   responsive: [
+    //     {
+    //       breakpoint: 768,
+    //       settings: "unslick"
+    //     }
+    //   ]
+    // }
+    // _logosSlickMobile.slick(logosSlickMobileOptions);
+    //
+    // _window.on('resize', debounce(function(e){
+    //   if ( _window.width() > 768 ) {
+    //     if (_logosSlickMobile.hasClass('slick-initialized')) {
+    //       _logosSlickMobile.slick('unslick');
+    //     }
+    //     return
+    //   }
+    //   if (!_logosSlickMobile.hasClass('slick-initialized')) {
+    //     return _logosSlickMobile.slick(logosSlickMobileOptions);
+    //   }
+    // }, 300));
 
     // prices
     var _priceSlickMobile = $('.prices__wrapper');

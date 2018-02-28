@@ -1,5 +1,6 @@
 
 .logos
+  position: relative
   background: white
   border-bottom: 1px solid #e1e1e1
   &__wrapper
@@ -7,11 +8,6 @@
     align-items: center
     justify-content: center
     min-height: 100px
-    .slick-track
-      display: flex !important
-      align-items: center
-      justify-content: center
-      min-height: 100px
   &__img
     position: relative
     flex: 0 0 144px
@@ -37,8 +33,46 @@
 +r($tablet)
   .logos
     &__wrapper
+      padding-top: 35px
       padding-bottom: 35px
-      .slick-dots
-        bottom: 10px
-        li button::after
-          background: rgba(#2f353a, .35)
+      margin-bottom: 30px
+      .swiper-pagination
+        bottom: 10px !important
+    .swiper-pagination
+      opacity: 1
+
+.swiper-pagination
+  opacity: 0
+  position: absolute
+  left: 50% !important
+  bottom: 50px
+  width: auto !important
+  display: flex
+  align-items: center
+  transform: translateX(-50%)
+  font-size: 0
+  .swiper-pagination-bullet
+    display: inline-block
+    position: relative
+    overflow: visible
+    padding: 7px
+    opacity: 1
+    margin: 0 !important
+    size: auto !important
+    background: transparent !important
+    &::after
+      display: inline-block
+      content: ' '
+      position: absolute
+      bottom: 0
+      left: 50%
+      width: 2px
+      height: 10px
+      transform: translateX(-50%)
+      background: rgba(#2f353a, .35)
+      transition: .25s $ease
+      cursor: pointer
+    &-active, &:hover
+      &::after
+        height: 20px
+        background: $colorYellow
