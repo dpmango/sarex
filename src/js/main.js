@@ -17,13 +17,14 @@ $(document).ready(function(){
     pagination();
     _window.on('scroll', throttle(pagination, 50));
     _window.on('resize', debounce(pagination, 250));
+    checkNavHash();
 
     initPopups();
     initSliders();
     initScrollMonitor();
     initMasks();
 
-    $(window).scrollTop(1);
+    // $(window).scrollTop(1);
     $(window).scroll();
     $(window).resize();
   }
@@ -41,7 +42,7 @@ $(document).ready(function(){
 
     // Viewport units buggyfill
     window.viewportUnitsBuggyfill.init({
-      force: false,
+      force: true,
       refreshDebounceWait: 150,
       appendToBody: true
     });
@@ -71,7 +72,7 @@ $(document).ready(function(){
         } else {
           header.removeClass('is-fixed');
         }
-        if ( vScroll > firstSection + headerHeight + 50 ){
+        if ( vScroll > firstSection ){
           header.addClass('is-fixed-visible');
         } else {
           header.removeClass('is-fixed-visible');
@@ -193,6 +194,11 @@ $(document).ready(function(){
     var id = cur && cur.length ? cur.data('section') : "1";
     var headerClass = cur && cur.length ? cur.data('header') : ""
 
+    // update hash
+    setTimeout(function(){
+      window.location.hash = id
+    },1000)
+
     // Set/remove active class
     paginationAnchors.removeClass("is-active").filter("[data-section='"+id+"']").addClass("is-active");
 
@@ -218,11 +224,32 @@ $(document).ready(function(){
        if ($(this).data('section') == selectedId){return this};
       });
       var targetScroll = $(cur).data('section') == "1" ? 0 : $(cur).offset().top
-      closeMobileMenu()
+      closeMobileMenu();
+
       $('body, html').animate({
-          scrollTop: targetScroll}, 1000);
+          scrollTop: getTargetSectionOffset(targetScroll)}, 1000);
       return false;
     })
+
+  function checkNavHash(){
+    if ( window.location.hash ){
+      var targetSectionId = window.location.hash.substring(1,2)
+      if ( targetSectionId > 1 ){
+        var targetScroll = $('.page__scroller [data-section='+targetSectionId+']').offset().top
+
+        $('body, html').animate({
+            scrollTop: getTargetSectionOffset(targetScroll)}, 100);
+      }
+    }
+  }
+
+  function getTargetSectionOffset(sectionOffset){
+    var target = sectionOffset
+    if ( _window.width() < 768 ){
+      target = target - $('.header').height()
+    }
+    return target
+  }
 
   //////////
   // SLIDERS

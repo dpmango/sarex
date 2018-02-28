@@ -28,9 +28,11 @@ body, html
 .page
   position: relative
   &__scroller
-    margin-top: 100vh
+    margin-top: calc(100vh - 100px)
     position: relative
     z-index: 5
+    +r($tablet)
+      margin-top: 100vh
 
 .container
   max-width: 1410px

@@ -9,7 +9,7 @@
   background: url('../img/heroBg.jpg') no-repeat center
   background-size: cover
   min-height: 600px
-  height: 100vh
+  height: calc(100vh - 100px)
   display: flex
   flex-direction: column
   &::after
@@ -120,6 +120,7 @@
 
 +r($tablet)
   .hero
+    height: 100vh
     &__wrapper
       padding: 80px 0 20px 0
       max-width: 450px
@@ -135,6 +136,7 @@
       margin-top: 20px
     &__scroll
       position: absolute
+      z-index: 5
       bottom: 20px
       margin-top: 20px
       span
@@ -172,7 +174,7 @@
       &.social-fb
         background: $facebook
       &.social-tg
-        background: $facebook
+        background: $telegram
       &.social-you
         background: $youtube
     &:nth-child(even)
