@@ -38,11 +38,26 @@
                 i.icon.icon-map
                 span Показать на карте
             
-        .b-text__image.pl5.wow(data-animation-delay=".5s" data-animation-class="wowFadeLeft")
-          picture
-            source(media="(min-width: 568px)" srcset="img/sectionImg_2.png 1x, img/sectionImg_2@2x.png 2x")
-            source(media="(max-width: 568px)" srcset="img/sectionImg_2Mobile.png 1x, img/sectionImg_2Mobile@2x.png 2x")
-            img.section-bg(src="img/el/sectionImg_2.png")
+        .numeric-image.b-text__image.pl5.wow(data-animation-delay=".5s" data-animation-class="wowFadeLeft")
+          .numeric-image__block
+            .numeric-image__block-wrapper
+              .numeric-image__name 600+
+              .numeric-image__caption пилотов 250+
+              .numeric-image__description из Москвы <br> и МО
+              include ../../inline-svg/numeric-circle-1.svg
+            
+          .numeric-image__block
+            .numeric-image__block-wrapper
+              .numeric-image__name 10+
+              .numeric-image__caption прирост 10+
+              .numeric-image__description исполнителей <br> в неделю
+              include ../../inline-svg/numeric-circle-2.svg
+          
+          img.section-bg(src="img/el/sectionImg_2.png" srcset="img/sectionImg_2@2x.png 2x")
+          //- picture
+          //-   source(media="(min-width: 568px)" srcset="img/sectionImg_2.png 1x, img/sectionImg_2@2x.png 2x")
+          //-   source(media="(max-width: 568px)" srcset="img/sectionImg_2Mobile.png 1x, img/sectionImg_2Mobile@2x.png 2x")
+          //-   img.section-bg(src="img/el/sectionImg_2.png" srcset="img/sectionImg_2@2x.png 2x")
               
 // SECTION
 .section

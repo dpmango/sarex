@@ -230,6 +230,105 @@
       color: $colorOrange
 
 
+.numeric-image
+  position: relative
+  &__block
+    position: absolute
+    text-align: center
+    border-radius: 50%
+    size: 150px
+    display: flex
+    flex-direction: column
+    &-wrapper
+      flex: 1 1 auto
+      width: 100%
+      position: relative
+      display: flex
+      flex-direction: column
+      align-items: center
+      justify-content: center
+    &:nth-child(1)
+      right: 0
+      top: 30%
+      .numeric-image__block-wrapper
+        padding-left: 15px
+    &:nth-child(2)
+      right: 0
+      top: 58%
+      .numeric-image__block-wrapper
+        padding-left: 10px
+  svg
+    position: absolute 0
+    width: 100%
+    height: auto
+    pointer-events: none
+  &__name
+    font-size: 28px
+    font-weight: 400
+    color: #3b4044
+  &__caption
+    font-size: 14px
+    font-weight: 500
+    margin-top: 5px
+    color: $colorYellow
+
+  &__description
+    font-size: 13px
+    color: $grayColor
+
+
++r(1050)
+  .numeric-image
+    position: relative
+    &__block
+      &:nth-child(1)
+        top: 22%
+      &:nth-child(2)
+        top: 65%
+
++r($desktop)
+  .numeric-image
+    &__block
+      size: 130px
+      &:nth-child(1)
+        .numeric-image__block-wrapper
+          padding-left: 7px
+      &:nth-child(2)
+        top: 65%
+        .numeric-image__block-wrapper
+          padding-left: 5px
+    &__name
+      font-size: 24px
+    &__caption
+      font-size: 13px
+
+    &__description
+      font-size: 12px
+
++r($tablet)
+  .numeric-image
+    padding-bottom: 80px
+    &__block
+      &:nth-child(1)
+        top: auto
+        bottom: 0px
+        left: 10%
+        right: auto
+      &:nth-child(2)
+        top: auto
+        bottom: 0px
+        right: 10%
+        left: auto
+
++r(450)
+  .numeric-image
+    padding-bottom: 100px
+    &__block
+      &:nth-child(1)
+        left: 0%
+      &:nth-child(2)
+        right: 10%
+
 
 // MAP
 .map
