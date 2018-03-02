@@ -277,7 +277,7 @@ $(document).ready(function(){
       watchOverflow: true,
       // spaceBetween: 6,
       slidesPerView: 'auto',
-      centeredSlides: true
+      // centeredSlides: true,
       // freeMode: true,
       // loop: true,
       pagination: {
