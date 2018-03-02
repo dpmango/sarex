@@ -42,7 +42,7 @@ $(document).ready(function(){
 
     // Viewport units buggyfill
     window.viewportUnitsBuggyfill.init({
-      force: true,
+      force: false,
       refreshDebounceWait: 150,
       appendToBody: true
     });
@@ -245,9 +245,10 @@ $(document).ready(function(){
 
   function getTargetSectionOffset(sectionOffset){
     var target = sectionOffset
-    if ( _window.width() < 768 ){
-      target = target - $('.header').height()
-    }
+    // if ( _window.width() < 768 ){
+    //   target = target - $('.header').height()
+    // }
+    target = target - $('.header').height()
     return target
   }
 
