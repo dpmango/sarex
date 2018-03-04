@@ -3,7 +3,7 @@ var path        = require('path');
 var util        = require('gulp-util');
 var plumber     = require('gulp-plumber');
 var concat      = require('gulp-concat');
-var uglifyJs    = require('gulp-uglify');
+var uglifyJs    = require('gulp-uglify-es').default;
 var config      = require('../config');
 
 gulp.task('javascript:vendor', function() {
